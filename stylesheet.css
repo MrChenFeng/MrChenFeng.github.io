@@ -110,10 +110,14 @@ h2 {
 }
 
 .one {
-  width: 160px;
-  height: 160px;
-  position: relative;
+    margin-left: 30px; /* 调整左侧空格 */
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
 }
+
 
 .two {
   width: 160px;
