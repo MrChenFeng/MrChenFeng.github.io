@@ -138,27 +138,42 @@ span.highlight {
   background-color: #ffffd0;
 }
 
-<style>
-        /* 确保所有图标颜色跟随链接颜色 */
-        a {
-            color: #0000FF; /* 默认链接蓝色，可根据需要调整 */
-            text-decoration: none; /* 去掉下划线，可选 */
-        }
-        a:hover {
-            color: #FF0000; /* 悬停颜色，可选 */
-        }
-        /* 统一图标样式 */
-        .social-icon {
-            width: 24px;
-            height: 24px;
-            vertical-align: middle; /* 垂直对齐 */
-            fill: currentColor; /* SVG继承链接颜色 */
-            margin-right: 10px; /* 增加logo间空隙，从10px改为20px */
-        }
-        .social-icon:last-child {
-            margin-right: 0; /* 最后一个图标去掉右边距 */
-        }
-        .social-icon i {
-            font-size: 24px;
-        }
-    </style>
+
+a {
+    color: #0000FF; /* 默认链接蓝色 */
+    text-decoration: none;
+}
+a:hover {
+    color: #FF0000; /* 悬停变红 */
+}
+.social-icon {
+    display: inline-block; /* 横向排列 */
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    fill: currentColor; /* SVG继承颜色 */
+    margin-right: 20px; /* 默认间距 */
+}
+.social-icon:last-child {
+    margin-right: 0; /* 最后一个图标无右边距 */
+}
+.social-icon i {
+    font-size: 24px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) { /* 平板及以下 */
+    .social-icon {
+        margin-right: 15px; /* 减小间距 */
+    }
+}
+@media (max-width: 480px) { /* 手机 */
+    .social-icon {
+        margin-right: 10px; /* 进一步减小间距 */
+        width: 20px; /* 缩小图标 */
+        height: 20px;
+    }
+    .social-icon i {
+        font-size: 20px; /* 调整Font Awesome图标大小 */
+    }
+}
