@@ -110,9 +110,9 @@ h2 {
 }
 
 .one {
-    margin-left: 30px; /* 调整左侧空格 */
+  margin-left: 30px; /* 调整左侧空格 */
   width: 100px;
-  height: 100px;
+  height: 120px;
   display: flex;
   justify-content: center; /* 水平居中 */
   align-items: center; /* 垂直居中 */
@@ -137,3 +137,28 @@ h2 {
 span.highlight {
   background-color: #ffffd0;
 }
+
+<style>
+        /* 确保所有图标颜色跟随链接颜色 */
+        a {
+            color: #0000FF; /* 默认链接蓝色，可根据需要调整 */
+            text-decoration: none; /* 去掉下划线，可选 */
+        }
+        a:hover {
+            color: #FF0000; /* 悬停颜色，可选 */
+        }
+        /* 统一图标样式 */
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle; /* 垂直对齐 */
+            fill: currentColor; /* SVG继承链接颜色 */
+            margin-right: 10px; /* 增加logo间空隙，从10px改为20px */
+        }
+        .social-icon:last-child {
+            margin-right: 0; /* 最后一个图标去掉右边距 */
+        }
+        .social-icon i {
+            font-size: 24px;
+        }
+    </style>
