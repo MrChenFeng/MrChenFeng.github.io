@@ -70,84 +70,110 @@
             </tr>
           </tbody></table>
 
+<style>
 
+
+  .news-container {
+    background-color: lightyellow;
+    border-radius: 5px;
+  }
+
+  .news-title {
+    padding: 10px 20px 5px 20px;
+    font-size: 1.2em;
+  }
+
+  .news-scroll {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 5px 0;
+  }
+
+  /* 滚动条样式（Webkit浏览器） */
+  .news-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .news-scroll::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 4px;
+  }
+
+  .news-scroll::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+
+  .news-scroll::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+</style>
+
+<div class="news-container">
+  <!-- 标题 -->
+  <div class="news-title">
+    <h2><b>🔔 News</b></h2>
+  </div>
+
+  <!-- 滚动内容 -->
+  <div class="news-scroll">
 <table style="width:100%; border:0px; border-spacing:0px; border-collapse:separate; margin-right:auto; margin-left:auto;margin-bottom: 0px;margin-top: 0px; background-color: lightyellow">
   <tbody>
     <!-- News Section -->
+
+    <!-- Add more news items as needed -->
     <tr>
-      <td colspan="2" style="padding:5px 20px">
-        <h2><b>News</b></h2>
+      <td style="padding:5px 20px; vertical-align:top; width: 20%;">Feb 28, 2025</td>
+      <td style="padding:5px 20px; vertical-align:top; width: 80%;">
+        Excited to attend AAAI'25 in Philadelphia and deliver an oral presentation of our paper!
       </td>
     </tr>
-
-            <!-- Add more news items as needed -->
     <tr>
-      <td style="padding:5px 20px; vertical-align:top; width: 20%;">
-      Dec 12, 2024
-      </td>
+      <td style="padding:5px 20px; vertical-align:top; width: 20%;">Dec 12, 2024</td>
       <td style="padding:5px 20px; vertical-align:top; width: 80%;">
-           I will be chairing the <a href="https://www.bmva.org/meetings/25-07-16-AISecurity.html">BMVA Symposium on AI Security</a> in July 2025. Stay tuned for further updates!
+        I will be chairing the <a href="https://www.bmva.org/meetings/25-07-16-AISecurity.html">BMVA Symposium on AI Security</a> in July 2025. Stay tuned for further updates!
       </td>
     </tr>
-      <tr>
-      <td style="padding:5px 20px; vertical-align:top; width: 20%;">
-       Dec 10, 2024
-      </td>
-      <td style="padding:5px 20px; vertical-align:top; width: 80%;">
-           <a href="https://arxiv.org/abs/2402.02629">PROSAC</a> been accepted to AAAI'2025 (Oral)!
-      </td>
-    </tr>
-            <tr>
-      <td style="padding:5px 20px; vertical-align:top; width: 20%;">
-       Jul 15, 2024
-      </td>
-      <td style="padding:5px 20px; vertical-align:top; width: 80%;">
-           <a href="https://dl.acm.org/doi/10.1145/3664647.3680664">CLIPCleaner</a> been accepted to ACM MM'2024!
-      </td>
-    </tr>
-
-        <tr>
-      <td style="padding:5px 20px; vertical-align:top; width: 20%;">
-       Jul 11, 2024
-      </td>
-      <td style="padding:5px 20px; vertical-align:top; width: 80%;">
-           <a href="https://ieeexplore.ieee.org/document/10594806">NoiseBox</a> been accepted to IEEE Transactions on Circuits and Systems for Video Technology!
-      </td>
-    </tr>
-
     <tr>
-      <td style="padding:5px 20px; vertical-align:top; width: 20%;">
-       May 10, 2024
-      </td>
+      <td style="padding:5px 20px; vertical-align:top; width: 20%;">Dec 10, 2024</td>
       <td style="padding:5px 20px; vertical-align:top; width: 80%;">
-          I have passed my PhD defence in 10th May! Many thanks to the examiners: <a href="https://scholar.google.co.uk/citations?user=XR6C9BoAAAAJ&hl=en">Dr. Qianni Zhang</a> and
-          <a href="https://scholar.google.co.uk/citations?user=MeS5d4gAAAAJ&hl=en">Prof. Tao Xiang</a>.
+        <a href="https://arxiv.org/abs/2402.02629">PROSAC</a> has been accepted for oral presentation at AAAI'25!
       </td>
     </tr>
-
     <tr>
-      <td style="padding:5px 20px; vertical-align:top; width: 20%;">
-       Feb 28, 2024
-      </td>
+      <td style="padding:5px 20px; vertical-align:top; width: 20%;">Jul 15, 2024</td>
       <td style="padding:5px 20px; vertical-align:top; width: 80%;">
-          <a href="https://github.com/szlbiubiubiu/LAFS_CVPR2024">LAFS</a> been accepted to CVPR'2024!
+        <a href="https://dl.acm.org/doi/10.1145/3664647.3680664">CLIPCleaner</a> has been accepted to ACM MM'24!
       </td>
     </tr>
-
     <tr>
-      <td style="padding:5px 20px; vertical-align:top; width: 20%;">
-       Jan 20, 2024
-      </td>
+      <td style="padding:5px 20px; vertical-align:top; width: 20%;">Jul 11, 2024</td>
       <td style="padding:5px 20px; vertical-align:top; width: 80%;">
-          I was invited for an open seminar talk
-            by <a href="https://www.riken.jp/en/research/labs/aip/generic_tech/imperfect_inf_learn/">RIKEN AIP</a>.
+        <a href="https://ieeexplore.ieee.org/document/10594806">NoiseBox</a> has been accepted to IEEE Transactions on Circuits and Systems for Video Technology!
       </td>
     </tr>
-
-
+    <tr>
+      <td style="padding:5px 20px; vertical-align:top; width: 20%;">May 10, 2024</td>
+      <td style="padding:5px 20px; vertical-align:top; width: 80%;">
+        Successfully defended my PhD on May 10! Sincere thanks to my examiners: <a href="https://scholar.google.co.uk/citations?user=XR6C9BoAAAAJ&hl=en">Dr. Qianni Zhang</a> and <a href="https://scholar.google.co.uk/citations?user=MeS5d4gAAAAJ&hl=en">Prof. Tao Xiang</a>.
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:5px 20px; vertical-align:top; width: 20%;">Feb 28, 2024</td>
+      <td style="padding:5px 20px; vertical-align:top; width: 80%;">
+        <a href="https://github.com/szlbiubiubiu/LAFS_CVPR2024">LAFS</a> has been accepted to CVPR'24!
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:5px 20px; vertical-align:top; width: 20%;">Jan 20, 2024</td>
+      <td style="padding:5px 20px; vertical-align:top; width: 80%;">
+        I was invited to give an open seminar talk at <a href="https://www.riken.jp/en/research/labs/aip/generic_tech/imperfect_inf_learn/">RIKEN AIP</a>.
+      </td>
+    </tr>
   </tbody>
 </table>
-
+  </div>
+</div>
 
 
 
