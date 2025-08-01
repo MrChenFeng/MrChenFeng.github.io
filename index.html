@@ -199,7 +199,7 @@
       }
       .container {
         width: 100%;
-        max-width: 1000px;
+        max-width: 900px;
         margin: 20px auto;
         padding: 0 20px;
       }
@@ -473,8 +473,7 @@
       }
     </style>
   </head>
-<!--  <body>-->
-    <body oncontextmenu="return false">
+  <body oncontextmenu="return false">
     <nav class="nav-container">
       <button class="hamburger" aria-label="Toggle navigation menu">
         <i class="fas fa-bars"></i>
@@ -851,9 +850,23 @@
           icon.classList.add('fa-bars');
         }
       }
-      hamburger.addEventListener('click', toggleMenu);
+      function closeMenu() {
+        navMenu.classList.remove('active');
+        const icon = hamburger.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+      hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+      });
       navLinks.forEach(link => {
-        link.addEventListener('click', () => toggleMenu());
+        link.addEventListener('click', closeMenu);
+      });
+      document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+          closeMenu();
+        }
       });
       function prosac_start() { document.querySelector('img[src="images/prosac.png"]').style.transform = 'scale(1.2)'; }
       function prosac_stop() { document.querySelector('img[src="images/prosac.png"]').style.transform = 'scale(1)'; }
