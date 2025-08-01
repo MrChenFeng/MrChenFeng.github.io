@@ -391,6 +391,7 @@
       .footer {
         text-align: center;
         padding: 20px 0;
+        font-family: 'Source Sans Pro', sans-serif;
         font-size: 0.5em;
       }
       .footer p {
@@ -406,7 +407,7 @@
         h2 {
           font-size: 1.4em;
         }
-                h3 {
+        h3 {
           font-size: 1.2em;
         }
         .container {
@@ -802,20 +803,18 @@
         <a href="https://info.flagcounter.com/R3pf">
           <img src="https://s01.flagcounter.com/map/R3pf/size_s/txt_000000/border_CCCCCC/pageviews_1/viewers_3/flags_0/" alt="Flag Counter" border="0">
         </a>
-    <p>&copy; 2025 Chen Feng. All rights reserved.
-      Last updated at <span id="last-updated"></span>.</p>
-  </footer>
-
-  <script>
-    const now = new Date();
-    const formattedDate = now.toLocaleDateString('en-GB', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-    document.getElementById('last-updated').textContent = formattedDate;
-  </script>
-
+        <p>&copy; 2025 Chen Feng. All rights reserved.
+          Last updated at <span id="last-updated"></span>.</p>
+      </footer>
+      <script>
+        const now = new Date();
+        const formattedDate = now.toLocaleDateString('en-GB', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+        document.getElementById('last-updated').textContent = formattedDate;
+      </script>
     </div>
     <script>
       const toggleButton = document.querySelector('.theme-toggle');
