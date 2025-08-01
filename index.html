@@ -1,424 +1,875 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta name="google-site-verification" content="5ubjARu1fwNDyKkQHaBxNW37N43oj0Prngqm2yiqPE0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Chen Feng | PhD</title>
-
+    <meta charset="UTF-8">
     <meta name="author" content="Chen Feng">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--    <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" defer />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&family=Merriweather:wght@400;700&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <title>Chen Feng | PhD</title>
     <link rel="shortcut icon" href="images/selfie.jpg" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
-
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: #f8f9fa;
+        color: #2d3748;
+        font-family: 'Montserrat', 'Source Sans Pro', sans-serif;
+        font-size: 0.9em;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        overflow-x: hidden;
+      }
+      body.dark-mode {
+        background-color: #1a202c;
+        color: #e2e8f0;
+      }
+      h1, h2 {
+        font-family: 'Merriweather', serif;
+        color: #1a4971;
+      }
+      body.dark-mode h1, body.dark-mode h2 {
+        color: #e2e8f0;
+      }
+      h1 {
+        font-size: 1.6em;
+      }
+      h2 {
+        font-size: 1.2em;
+      }
+      a {
+        text-decoration: none;
+        color: #1a4971;
+        transition: color 0.3s ease;
+        font-family: 'Montserrat', 'Source Sans Pro', sans-serif;
+      }
+      body.dark-mode a {
+        color: #63b3ed;
+      }
+      a:hover {
+        color: #3182ce;
+      }
+      body.dark-mode a:hover {
+        color: #90cdf4;
+      }
+      strong {
+        font-family: 'Montserrat', 'Source Sans Pro', sans-serif;
+        font-weight: 700;
+      }
+      .papertitle {
+        font-family: 'Montserrat', 'Source Sans Pro', sans-serif;
+        font-weight: 700;
+        color: #1a4971;
+      }
+      body.dark-mode .papertitle {
+        color: #63b3ed;
+      }
+      .name {
+        padding-top: 20px;
+        font-size: 24px;
+      }
+      .nav-container {
+        width: 100%;
+        margin: 0 auto;
+        padding: 10px 20px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .nav-container ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        background: #ffffff;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #e2e8f0;
+        border-radius: 0 0 8px 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      .nav-container ul.active {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      body.dark-mode .nav-container ul {
+        background: #2d3748;
+        border: 1px solid #4a5568;
+      }
+      .nav-container li {
+        margin: 8px 0;
+      }
+      .nav-container a {
+        font-size: 1.1em;
+        font-weight: 600;
+        padding: 8px;
+        display: block;
+        transition: color 0.3s ease, transform 0.2s ease;
+      }
+      .nav-container a:hover {
+        transform: scale(1.05);
+      }
+      .nav-container a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: #3182ce;
+        transition: width 0.3s ease;
+      }
+      body.dark-mode .nav-container a::after {
+        background-color: #63b3ed;
+      }
+      .nav-container a:hover::after {
+        width: 100%;
+      }
+      .hamburger {
+        font-size: 1.2em;
+        background: none;
+        border: none;
+        color: #2b6cb0;
+        cursor: pointer;
+        padding: 8px;
+      }
+      body.dark-mode .hamburger {
+        color: #63b3ed;
+      }
+      .hamburger:focus {
+        outline: 2px solid #2b6cb0;
+        outline-offset: 2px;
+      }
+      body.dark-mode .hamburger:focus {
+        outline: 2px solid #63b3ed;
+      }
+      .theme-toggle {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        background: #ffffff;
+        border: 2px solid #2b6cb0;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        font-size: 1em;
+        cursor: pointer;
+        color: #2b6cb0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+      }
+      body.dark-mode .theme-toggle {
+        background: #2d3748;
+        border: 2px solid #63b3ed;
+        color: #63b3ed;
+      }
+      .theme-toggle:hover {
+        background: #e2e8f0;
+      }
+      body.dark-mode .theme-toggle:hover {
+        background: #4a5568;
+      }
+      .theme-toggle:focus {
+        outline: 2px solid #2b6cb0;
+        outline-offset: 2px;
+      }
+      body.dark-mode .theme-toggle:focus {
+        outline: 2px solid #63b3ed;
+      }
+      .container {
+        width: 100%;
+        max-width: 1000px;
+        margin: 20px auto;
+        padding: 0 20px;
+      }
+      .profile {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        align-items: center;
+        margin-bottom: 40px;
+      }
+      .profile-text {
+        flex: 1;
+        min-width: 300px;
+      }
+      .profile-image {
+        flex: 0 0 200px;
+        text-align: center;
+      }
+      .profile-image img {
+        width: 100%;
+        max-width: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #e2e8f0;
+      }
+      body.dark-mode .profile-image img {
+        border: 2px solid #4a5568;
+      }
+      .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+      }
+      .social-icon {
+        font-size: 1.2em;
+        color: #2b6cb0;
+        padding: 8px;
+        transition: color 0.3s ease, transform 0.2s ease;
+      }
+      body.dark-mode .social-icon {
+        color: #63b3ed;
+      }
+      .social-icon:hover {
+        color: #3182ce;
+        transform: scale(1.2);
+      }
+      body.dark-mode .social-icon:hover {
+        color: #90cdf4;
+      }
+      .social-icon svg {
+        width: 1.6em;
+        height: 1.6em;
+        margin-top: -0.15em;
+        display: block;
+        fill: currentColor;
+      }
+      .news-container {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 40px;
+        transition: background 0.3s ease, border 0.3s ease;
+      }
+      body.dark-mode .news-container {
+        background: #2d3748;
+        border: 1px solid #4a5568;
+      }
+      .news-title {
+        margin: 0 0 10px;
+      }
+      .news-scroll {
+        max-height: 800px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 10px 0;
+      }
+      .news-scroll::-webkit-scrollbar {
+        width: 8px;
+      }
+      .news-scroll::-webkit-scrollbar-track {
+        background: #e2e8f0;
+        border-radius: 4px;
+      }
+      body.dark-mode .news-scroll::-webkit-scrollbar-track {
+        background: #4a5568;
+      }
+      .news-scroll::-webkit-scrollbar-thumb {
+        background: #a0aec0;
+        border-radius: 4px;
+      }
+      body.dark-mode .news-scroll::-webkit-scrollbar-thumb {
+        background: #718096;
+      }
+      .news-scroll::-webkit-scrollbar-thumb:hover {
+        background: #718096;
+      }
+      body.dark-mode .news-scroll::-webkit-scrollbar-thumb:hover {
+        background: #a0aec0;
+      }
+      .news-item {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 10px 0;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      body.dark-mode .news-item {
+        border-bottom: 1px solid #4a5568;
+      }
+      .news-item:last-child {
+        border-bottom: none;
+      }
+      .news-date {
+        flex: 0 0 120px;
+        font-weight: 600;
+        font-size: 0.8em;
+      }
+      .news-content {
+        flex: 1;
+        font-size: 0.8em;
+      }
+      .pubs-container {
+        margin-bottom: 40px;
+      }
+      .pubs-scroll {
+        max-height: 800px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 10px 0;
+      }
+      .pubs-scroll::-webkit-scrollbar {
+        width: 8px;
+      }
+      .pubs-scroll::-webkit-scrollbar-track {
+        background: #e2e8f0;
+        border-radius: 4px;
+      }
+      body.dark-mode .pubs-scroll::-webkit-scrollbar-track {
+        background: #4a5568;
+      }
+      .pubs-scroll::-webkit-scrollbar-thumb {
+        background: #a0aec0;
+        border-radius: 4px;
+      }
+      body.dark-mode .pubs-scroll::-webkit-scrollbar-thumb {
+        background: #718096;
+      }
+      .pubs-scroll::-webkit-scrollbar-thumb:hover {
+        background: #718096;
+      }
+      body.dark-mode .pubs-scroll::-webkit-scrollbar-thumb:hover {
+        background: #a0aec0;
+      }
+      .pub-item {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 15px 0;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      body.dark-mode .pub-item {
+        border-bottom: 1px solid #4a5568;
+      }
+      .pub-item:last-child {
+        border-bottom: none;
+      }
+      .pub-thumbnail {
+        flex: 0 0 160px;
+      }
+      .pub-thumbnail img {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 4px;
+        transition: transform 0.3s ease;
+      }
+      .pub-details {
+        flex: 1;
+        font-size: 0.8em;
+      }
+      .academic-services {
+        margin-bottom: 40px;
+      }
+      .footer {
+        text-align: center;
+        padding: 20px 0;
+        font-size: 0.8em;
+      }
+      .footer p {
+        margin: 10px 0;
+      }
+      @media (max-width: 600px) {
+        body {
+          font-size: 0.8em;
+        }
+        h1 {
+          font-size: 1.4em;
+        }
+        h2 {
+          font-size: 1.1em;
+        }
+        .container {
+          padding: 0 15px;
+          max-width: 100vw;
+        }
+        .nav-container {
+          padding: 10px 15px;
+          max-width: 100vw;
+        }
+        .nav-container ul {
+          top: 50px;
+          width: 100%;
+          max-width: 100vw;
+        }
+        .nav-container a {
+          font-size: 1em;
+        }
+        .profile {
+          flex-direction: row;
+          align-items: center;
+        }
+        .profile-text {
+          min-width: 200px;
+          flex: 1;
+        }
+        .profile-image {
+          flex: 0 0 100px;
+        }
+        .profile-image img {
+          max-width: 100px;
+        }
+        .news-item, .pub-item {
+          flex-direction: column;
+        }
+        .news-date {
+          flex: 0 0 auto;
+          width: 100px;
+          margin-bottom: 10px;
+          font-size: 0.7em;
+        }
+        .news-content {
+          font-size: 0.7em;
+        }
+        .pub-thumbnail {
+          flex: 0 0 120px;
+        }
+        .pub-thumbnail img {
+          max-width: 120px;
+        }
+        .pub-details {
+          font-size: 0.7em;
+        }
+        .news-scroll {
+          max-height: 400px;
+          -webkit-overflow-scrolling: touch;
+          overflow-x: hidden;
+        }
+        .pubs-scroll {
+          max-height: 600px;
+          -webkit-overflow-scrolling: touch;
+          overflow-x: hidden;
+        }
+        .social-icon {
+          font-size: 1.1em;
+        }
+        .footer {
+          font-size: 0.7em;
+        }
+      }
+    </style>
   </head>
-
-<!--  avoid direct source code viewing-->
-<!--  <body oncontextmenu="return false">-->
-    <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-      <tr style="padding:0px">
-        <td style="padding:0px">
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr style="padding:0px">
-              <td style="padding:2.5%;width:62%;vertical-align:middle">
-                <p class="name" style="text-align: center;">
-                  Chen FENG （冯晨）
-                  <p>I'm a Postdoctoral Research Associate at <a href="https://www.ucl.ac.uk/">University College London</a>,
-                  working with <a href="https://www.ucl.ac.uk/electronic-electrical-engineering/people/dr-miguel-rodrigues">Prof. Miguel Rodrigues</a>. I finished my PhD at <a href="https://www.qmul.ac.uk/">Queen Mary University of London</a>,
-                  working in CV/ML with <a href="http://www.eecs.qmul.ac.uk/~ioannisp/">Prof. Ioannis Patras</a>. I also visited <a href="https://mhug.disi.unitn.it/#/">University of Trento</a>
-                  as an <a href="https://www.ai4media.eu/junior-fellows-program/">AI4Media Junior Exchange Fellow</a>,
-                  working with <a href="https://disi.unitn.it/~sebe/">Prof. Nicu Sebe</a>.
-                </p>
-                <p>
-                    I earned my master’s degree from <a href="https://www.au.tsinghua.edu.cn/en/">Tsinghua University</a>, where I conducted research in bioinformatics under the supervision of <a href="http://lifeome.net/glab/jgu/index.htm">Prof. Jin Gu</a>.
-                  Before that, I received my bachelor's degree from <a href="https://aien.nankai.edu.cn/"> Nankai University</a>.
-                </p>
-                <p style="text-align:center">
-<svg style="display: none;">
-        <symbol id="xiaohongshu-icon" viewBox="0 0 377.97 376.53">
-            <path d="M43.86,1.11C21.81,5.7,3.59,22.91,1.34,46.07c-2.33,23.92,0,49.25,0,73.3v149.53c0,27.5-6.94,64.79,10.75,87.96,19.11,25.02,53.98,19.06,81.6,19.06h214.03c8.48,0,18.08,1.24,26.39-.49,22.05-4.59,40.26-21.8,42.51-44.96,2.33-23.92,0-49.25,0-73.3V107.64c0-27.5,6.94-64.79-10.75-87.96C346.76-5.34,311.89.62,284.27.62H70.24c-8.48,0-18.08-1.24-26.39.49M177.26,134.02l-10.26,27.85h17.59l-14.66,35.18,13.19,1.47c-1.45,3.93-3.4,11.34-6.35,14.42-2.17,2.26-5.48,1.71-8.31,1.71-6.39,0-19.3,2.65-22.72-4.4-1.57-3.23.68-7.31,1.95-10.26,2.66-6.17,6.19-12.48,7.57-19.06-3.19,0-7.22.63-10.26-.49-11.4-4.19,1.28-22.52,3.91-28.83,1.85-4.43,4.04-14.05,8.06-16.86,5.65-3.94,14.24-1.21,20.28-.73M61.45,226.38c4.03,0,10.02,1.2,12.46-2.93,2.59-4.39.73-14.06.73-19.06v-48.38c0-4.53-2.29-18.38,1.71-21.26,3.29-2.37,17.1-1.87,18.57,2.2,2.4,6.66.24,17.83.24,24.92v46.91c0,8.04,1.39,17.39-1.95,24.92-3.19,7.18-18.04,13.59-25.41,8.06-3.24-2.43-5.55-11.6-6.35-15.39M284.27,134.02v7.33c5.47,0,12.33-1.12,17.59.49,17.56,5.36,16.13,22.61,16.13,37.63,2.93,0,5.93-.23,8.8.49,16.85,4.21,14.66,21.06,14.66,34.69,0,7.27,1.36,15.86-3.42,21.99-5.27,6.75-13.9,5.86-21.5,5.86-2.36,0-6.25.75-8.31-.73-3.85-2.77-5.54-11-6.35-15.39,4.82,0,13.51,1.65,17.35-1.95,4.52-4.25,2.67-20.86-2.69-23.7-2.84-1.5-7.16-.73-10.26-.73h-21.99v42.51h-20.52v-42.51h-20.52v-20.52h20.52v-17.59h-13.19v-20.52h13.19v-7.33h20.52M237.36,141.35v20.52h-11.73v61.57h19.06v19.06h-67.43l7.82-18.32,18.57-.73v-61.57h-11.73v-20.52h45.44M320.92,161.88c0-4.17-.76-9.17.49-13.19,4.9-15.82,28.76-3.07,16.86,10.02-1.35,1.49-3.73,2.22-5.62,2.69-3.75.94-7.89.49-11.73.49M61.45,161.88l-6.11,54.24-10.02,17.59-8.8-23.46,4.4-48.38h20.52M128.88,161.88l4.4,48.38-8.8,21.99h-2.93c-7.87-12.46-8.87-25.31-10.26-39.58-.99-10.14-2.93-20.58-2.93-30.78h20.52M284.27,161.88v17.59h13.19v-17.59h-13.19M174.32,223.45l-7.33,19.06h-32.25l7.82-19.79,11.24.24,20.52.49Z"/>
-        </symbol>
-    </svg>
-
-    <!-- 使用图标 -->
-    <a href="mailto:thufrank1994@gmail.com" class="social-icon">
-        <i class="fas fa-envelope"></i>
-    </a>
-    <a href="https://scholar.google.com/citations?hl=en&user=4VZhTYgAAAAJ" class="social-icon">
-        <i class="fas fa-graduation-cap"></i>
-    </a>
-    <a href="https://www.zhihu.com/people/MrChenFeng" class="social-icon">
-        <i class="fab fa-zhihu"></i>
-    </a>
-    <a href="https://www.xiaohongshu.com/user/profile/5d783b07000000000100882e" class="social-icon">
-        <svg class="social-icon">
-            <use href="#xiaohongshu-icon"></use>
-        </svg>
-    </a>
-    <a href="https://www.linkedin.com/in/drchenfeng/" class="social-icon">
-        <i class="fab fa-linkedin"></i>
-    </a>
-    <a href="https://github.com/MrChenFeng" class="social-icon">
-        <i class="fab fa-github"></i>
-    </a>
-                      <a href="https://x.com/Dr_ChenFeng" class="social-icon">
-        <i class="fab fa-twitter"></i>
-    </a>
-                </p>
-              </td>
-              <td style="padding:2.5%;width:30%;max-width:40%">
-                <a href="images/profile.jpg"><img style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="profile photo" src="images/profile.jpg" class="hoverZoomLink"></a>
-              </td>
-            </tr>
-          </tbody></table>
-
-<style>
-
-
-  .news-container {
-    background-color: lightyellow;
-    border-radius: 5px;
-  }
-
-  .news-title {
-    padding: 10px 20px 5px 20px;
-    font-size: 1.2em;
-  }
-
-  .news-scroll {
-    max-height: 300px;
-    overflow-y: auto;
-    padding: 5px 0;
-  }
-
-  /* 滚动条样式（Webkit浏览器） */
-  .news-scroll::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  .news-scroll::-webkit-scrollbar-track {
-    background: #f0f0f0;
-    border-radius: 4px;
-  }
-
-  .news-scroll::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
-  }
-
-  .news-scroll::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-</style>
-
-<div class="news-container">
-  <!-- 标题 -->
-  <div class="news-title">
-    <h2><b>🔔 News</b></h2>
-  </div>
-
-  <!-- 滚动内容 -->
-  <div class="news-scroll">
-<table style="width:100%; border:0px; border-spacing:0px; border-collapse:separate; margin-right:auto; margin-left:auto;margin-bottom: 0px;margin-top: 0px; background-color: lightyellow">
-  <tbody>
-    <!-- News Section -->
-
-    <!-- Add more news items as needed -->
-            <tr>
-      <td style="padding:5px 20px; vertical-align:top; width: 20%;">July 5, 2025</td>
-      <td style="padding:5px 20px; vertical-align:top; width: 80%;">
-           Two papers have been accepted to ACM MM'25!
-      </td>
-    </tr>
-
-        <tr>
-      <td style="padding:5px 20px; vertical-align:top; width: 20%;">Apr 15, 2025</td>
-      <td style="padding:5px 20px; vertical-align:top; width: 80%;">
-            I was recently interviewed by <a href="https://aihub.org/">AIhub</a> about my recent research.
-            Grateful for the opportunity to share my work and perspectives.
-            <a href="https://aihub.org/2025/04/15/provably-safe-certification-for-machine-learning-models-under-adversarial-attacks-interview-with-chen-feng/">Read the full interview here.</a>
-      </td>
-    </tr>
-
-    <tr>
-      <td style="padding:5px 20px; vertical-align:top; width: 20%;">Feb 28, 2025</td>
-      <td style="padding:5px 20px; vertical-align:top; width: 80%;">
-        Excited to attend AAAI'25 in Philadelphia and deliver an oral presentation of our paper!
-      </td>
-    </tr>
-    <tr>
-      <td style="padding:5px 20px; vertical-align:top; width: 20%;">Dec 12, 2024</td>
-      <td style="padding:5px 20px; vertical-align:top; width: 80%;">
-        I will be chairing the <a href="https://www.bmva.org/meetings/25-07-16-AISecurity.html">BMVA Symposium on AI Security</a> in July 2025. Stay tuned for further updates!
-      </td>
-    </tr>
-    <tr>
-      <td style="padding:5px 20px; vertical-align:top; width: 20%;">Dec 10, 2024</td>
-      <td style="padding:5px 20px; vertical-align:top; width: 80%;">
-        <a href="https://arxiv.org/abs/2402.02629">PROSAC</a> has been accepted for oral presentation at AAAI'25!
-      </td>
-    </tr>
-    <tr>
-      <td style="padding:5px 20px; vertical-align:top; width: 20%;">Jul 15, 2024</td>
-      <td style="padding:5px 20px; vertical-align:top; width: 80%;">
-        <a href="https://dl.acm.org/doi/10.1145/3664647.3680664">CLIPCleaner</a> has been accepted to ACM MM'24!
-      </td>
-    </tr>
-    <tr>
-      <td style="padding:5px 20px; vertical-align:top; width: 20%;">Jul 11, 2024</td>
-      <td style="padding:5px 20px; vertical-align:top; width: 80%;">
-        <a href="https://ieeexplore.ieee.org/document/10594806">NoiseBox</a> has been accepted to IEEE Transactions on Circuits and Systems for Video Technology!
-      </td>
-    </tr>
-    <tr>
-      <td style="padding:5px 20px; vertical-align:top; width: 20%;">May 10, 2024</td>
-      <td style="padding:5px 20px; vertical-align:top; width: 80%;">
-        Successfully defended my PhD on May 10! Sincere thanks to my examiners: <a href="https://scholar.google.co.uk/citations?user=XR6C9BoAAAAJ&hl=en">Dr. Qianni Zhang</a> and <a href="https://scholar.google.co.uk/citations?user=MeS5d4gAAAAJ&hl=en">Prof. Tao Xiang</a>.
-      </td>
-    </tr>
-    <tr>
-      <td style="padding:5px 20px; vertical-align:top; width: 20%;">Feb 28, 2024</td>
-      <td style="padding:5px 20px; vertical-align:top; width: 80%;">
-        <a href="https://github.com/szlbiubiubiu/LAFS_CVPR2024">LAFS</a> has been accepted to CVPR'24!
-      </td>
-    </tr>
-    <tr>
-      <td style="padding:5px 20px; vertical-align:top; width: 20%;">Jan 20, 2024</td>
-      <td style="padding:5px 20px; vertical-align:top; width: 80%;">
-        I was invited to give an open seminar talk at <a href="https://www.riken.jp/en/research/labs/aip/generic_tech/imperfect_inf_learn/">RIKEN AIP</a>.
-      </td>
-    </tr>
-  </tbody>
-</table>
-  </div>
-</div>
-
-
-
-  <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-      <tr>
-      <td style="padding:20px;width:100%;vertical-align:middle">
-        <h2><b>Research</b></h2>
+  <body>
+    <nav class="nav-container">
+      <button class="hamburger" aria-label="Toggle navigation menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul>
+        <li><a href="#news">News</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#academic-services">Academic Services</a></li>
+      </ul>
+      <button class="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fas fa-sun"></i>
+      </button>
+    </nav>
+    <div class="container">
+      <section class="profile">
+        <div class="profile-text">
+          <h1 class="name" style="text-align: center;">Chen Feng （冯晨）</h1>
+          <p>
+            I'm a Postdoctoral Research Associate at <a href="https://www.ucl.ac.uk/">University College London</a>,
+            working with <a href="https://www.ucl.ac.uk/electronic-electrical-engineering/people/dr-miguel-rodrigues">Prof. Miguel Rodrigues</a>. I finished my PhD at <a href="https://www.qmul.ac.uk/">Queen Mary University of London</a>,
+            working in CV/ML with <a href="http://www.eecs.qmul.ac.uk/~ioannisp/">Prof. Ioannis Patras</a>. I also visited <a href="https://mhug.disi.unitn.it/#/">University of Trento</a>
+            as an <a href="https://www.ai4media.eu/junior-fellows-program/">AI4Media Junior Exchange Fellow</a>,
+            working with <a href="https://disi.unitn.it/~sebe/">Prof. Nicu Sebe</a>.
+          </p>
+          <p>
+            I earned my master’s degree from <a href="https://www.au.tsinghua.edu.cn/en/">Tsinghua University</a>, where I conducted research in bioinformatics under the supervision of <a href="http://lifeome.net/glab/jgu/index.htm">Prof. Jin Gu</a>.
+            Before that, I received my bachelor's degree from <a href="https://aien.nankai.edu.cn/">Nankai University</a>.
+          </p>
+          <div class="social-icons">
+            <svg style="display: none;">
+              <symbol id="xiaohongshu-icon" viewBox="0 0 377.97 376.53">
+                <path d="M43.86,1.11C21.81,5.7,3.59,22.91,1.34,46.07c-2.33,23.92,0,49.25,0,73.3v149.53c0,27.5-6.94,64.79,10.75,87.96,19.11,25.02,53.98,19.06,81.6,19.06h214.03c8.48,0,18.08,1.24,26.39-.49,22.05-4.59,40.26-21.8,42.51-44.96,2.33-23.92,0-49.25,0-73.3V107.64c0-27.5,6.94-64.79-10.75-87.96C346.76-5.34,311.89.62,284.27.62H70.24c-8.48,0-18.08-1.24-26.39.49M177.26,134.02l-10.26,27.85h17.59l-14.66,35.18,13.19,1.47c-1.45,3.93-3.4,11.34-6.35,14.42-2.17,2.26-5.48,1.71-8.31,1.71-6.39,0-19.3,2.65-22.72-4.4-1.57-3.23.68-7.31,1.95-10.26,2.66-6.17,6.19-12.48,7.57-19.06-3.19,0-7.22.63-10.26-.49-11.4-4.19,1.28-22.52,3.91-28.83,1.85-4.43,4.04-14.05,8.06-16.86,5.65-3.94,14.24-1.21,20.28-.73M61.45,226.38c4.03,0,10.02,1.2,12.46-2.93,2.59-4.39.73-14.06.73-19.06v-48.38c0-4.53-2.29-18.38,1.71-21.26,3.29-2.37,17.1-1.87,18.57,2.2,2.4,6.66.24,17.83.24,24.92v46.91c0,8.04,1.39,17.39-1.95,24.92-3.19,7.18-18.04,13.59-25.41,8.06-3.24-2.43-5.55-11.6-6.35-15.39M284.27,134.02v7.33c5.47,0,12.33-1.12,17.59.49,17.56,5.36,16.13,22.61,16.13,37.63,2.93,0,5.93-.23,8.8.49,16.85,4.21,14.66,21.06,14.66,34.69,0,7.27,1.36,15.86-3.42,21.99-5.27,6.75-13.9,5.86-21.5,5.86-2.36,0-6.25.75-8.31-.73-3.85-2.77-5.54-11-6.35-15.39,4.82,0,13.51,1.65,17.35-1.95,4.52-4.25,2.67-20.86-2.69-23.7-2.84-1.5-7.16-.73-10.26-.73h-21.99v42.51h-20.52v-42.51h-20.52v-20.52h20.52v-17.59h-13.19v-20.52h13.19v-7.33h20.52M237.36,141.35v20.52h-11.73v61.57h19.06v19.06h-67.43l7.82-18.32,18.57-.73v-61.57h-11.73v-20.52h45.44M320.92,161.88c0-4.17-.76-9.17.49-13.19,4.9-15.82,28.76-3.07,16.86,10.02-1.35,1.49-3.73,2.22-5.62,2.69-3.75.94-7.89.49-11.73.49M61.45,161.88l-6.11,54.24-10.02,17.59-8.8-23.46,4.4-48.38h20.52M128.88,161.88l4.4,48.38-8.8,21.99h-2.93c-7.87-12.46-8.87-25.31-10.26-39.58-.99-10.14-2.93-20.58-2.93-30.78h20.52M284.27,161.88v17.59h13.19v-17.59h-13.19M174.32,223.45l-7.33,19.06h-32.25l7.82-19.79,11.24.24,20.52.49Z"/>
+              </symbol>
+            </svg>
+            <a href="mailto:thufrank1994@gmail.com" class="social-icon" aria-label="Email Chen Feng">
+              <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://scholar.google.com/citations?hl=en&user=4VZhTYgAAAAJ" class="social-icon" aria-label="Google Scholar Profile">
+              <i class="fas fa-graduation-cap"></i>
+            </a>
+            <a href="https://www.zhihu.com/people/MrChenFeng" class="social-icon" aria-label="Zhihu Profile">
+              <i class="fab fa-zhihu"></i>
+            </a>
+            <a href="https://www.xiaohongshu.com/user/profile/5d783b07000000000100882e" class="social-icon" aria-label="Xiaohongshu Profile">
+              <svg class="social-icon">
+                <use href="#xiaohongshu-icon"></use>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/drchenfeng/" class="social-icon" aria-label="LinkedIn Profile">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/MrChenFeng" class="social-icon" aria-label="GitHub Profile">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://x.com/Dr_ChenFeng" class="social-icon" aria-label="X Profile">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+        <div class="profile-image">
+          <a href="images/profile.jpg">
+            <img src="images/profile.jpg" alt="Profile photo of Chen Feng, a Postdoctoral Research Associate at UCL">
+          </a>
+        </div>
+      </section>
+      <section class="news-container" id="news">
+        <div class="news-title">
+          <h2>News</h2>
+        </div>
+        <div class="news-scroll">
+          <div class="news-item">
+            <div class="news-date">July 16, 2025</div>
+            <div class="news-content">
+              The BMVA Symposium on AI Security was a resounding success! A heartfelt thank you to all attendees and speakers for their invaluable contributions.
+              Watch the full video here: <a href="https://www.youtube.com/watch?v=FuFUERNFR9w&list=PLW8VWHVjepIszQtfq1N0UPfwVYwSxAgYL">Link</a>.
+            </div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">July 5, 2025</div>
+            <div class="news-content">
+              Two papers have been accepted to ACM MM'25!
+            </div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">Apr 15, 2025</div>
+            <div class="news-content">
+              I was recently interviewed by <a href="https://aihub.org/">AIhub</a> about my recent research.
+              Grateful for the opportunity to share my work and perspectives.
+              <a href="https://aihub.org/2025/04/15/provably-safe-certification-for-machine-learning-models-under-adversarial-attacks-interview-with-chen-feng/">Read the full interview here.</a>
+            </div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">Feb 28, 2025</div>
+            <div class="news-content">
+              Excited to attend AAAI'25 in Philadelphia and deliver an oral presentation of our paper!
+            </div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">Dec 12, 2024</div>
+            <div class="news-content">
+              I will be chairing the <a href="https://www.bmva.org/meetings/25-07-16-AISecurity.html">BMVA Symposium on AI Security</a> in July 2025. Stay tuned for further updates!
+            </div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">Dec 10, 2024</div>
+            <div class="news-content">
+              <a href="https://arxiv.org/abs/2402.02629">PROSAC</a> has been accepted for oral presentation at AAAI'25!
+            </div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">Jul 15, 2024</div>
+            <div class="news-content">
+              <a href="https://dl.acm.org/doi/10.1145/3664647.3680664">CLIPCleaner</a> has been accepted to ACM MM'24!
+            </div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">Jul 11, 2024</div>
+            <div class="news-content">
+              <a href="https://ieeexplore.ieee.org/document/10594806">NoiseBox</a> has been accepted to IEEE Transactions on Circuits and Systems for Video Technology!
+            </div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">May 10, 2024</div>
+            <div class="news-content">
+              Successfully defended my PhD on May 10! Sincere thanks to my examiners: <a href="https://scholar.google.co.uk/citations?user=XR6C9BoAAAAJ&hl=en">Dr. Qianni Zhang</a> and <a href="https://scholar.google.co.uk/citations?user=MeS5d4gAAAAJ&hl=en">Prof. Tao Xiang</a>.
+            </div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">Feb 28, 2024</div>
+            <div class="news-content">
+              <a href="https://github.com/szlbiubiubiu/LAFS_CVPR2024">LAFS</a> has been accepted to CVPR'24!
+            </div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">Jan 20, 2024</div>
+            <div class="news-content">
+              I was invited to give an open seminar talk at <a href="https://www.riken.jp/en/research/labs/aip/generic_tech/imperfect_inf_learn/">RIKEN AIP</a>.
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="pubs-container" id="research">
+        <h2>Research</h2>
         <p>
           I'm interested in various weakly supervised learning problems in the context of computer vision, including
           completely unlabelled <strong>self-supervised learning</strong>, <strong>semi-supervised learning</strong> with partial data having labels, and <strong>learning with noisy/coarse labels</strong>.
           I'm happy to discuss any related topics and possible collaborations, please simply drop me an email!
         </p>
-      </td>
-    </tr>
-  </tbody></table>
-
-
-<table style="width:100%; border:0px; border-spacing:0px; border-collapse:separate; margin-right:auto; margin-left:auto;">
-  <tbody>
-    <tr>
-      <td style="padding:5px 20px; width:25%; vertical-align:middle;">
-        <div class="one" onmouseout="prosac_stop()" onmouseover="prosac_start()">
-          <img src="images/prosac.png" width="160" alt="PROSAC Thumbnail">
+        <h3>Publications</h3>
+        <div class="pubs-scroll">
+          <div class="pub-item">
+            <div class="pub-thumbnail">
+              <div onmouseout="prosac_stop()" onmouseover="prosac_start()">
+                <img src="images/prosac.png" alt="PROSAC Thumbnail">
+              </div>
+            </div>
+            <div class="pub-details">
+              <a href="https://arxiv.org/abs/2402.02629">
+                <span class="papertitle">PROSAC: Provably Safe Certification for Machine Learning Models under Adversarial Attacks</span>
+              </a>
+              <br>
+              <strong>Chen Feng</strong>,
+              <a href="https://sites.google.com/view/ziquanliu">Ziquan Liu</a>,
+              <a href="https://www.ee.ucl.ac.uk/iiml/members/zhuo.html">Zhuo Zhi</a>,
+              <a href="https://ilijabogunovic.com/">Ilija Bogunovic</a>,
+              <a href="https://www.ucl.ac.uk/laws/people/carsten-gerner-beuerle">Carsten Gerner-Beuerle</a>,
+              <a href="https://www.ucl.ac.uk/electronic-electrical-engineering/people/dr-miguel-rodrigues">Miguel Rodrigues</a>
+              <br>
+              <em>AAAI 2025 (Oral)</em>
+            </div>
+          </div>
+          <div class="pub-item">
+            <div class="pub-thumbnail">
+              <div onmouseout="clipcleaner_stop()" onmouseover="clipcleaner_start()">
+                <img src="images/clipcleaner.png" alt="CLIPCleaner Thumbnail">
+              </div>
+            </div>
+            <div class="pub-details">
+              <a href="https://www.arxiv.org/abs/2408.10012">
+                <span class="papertitle">CLIPCleaner: Cleaning Noisy Labels with CLIP</span>
+              </a>
+              <br>
+              <strong>Chen Feng</strong>,
+              <a href="https://ytzimiro.github.io/">Georgios Tzimiropoulos</a>,
+              <a href="https://www.eecs.qmul.ac.uk/~ioannisp/">Ioannis Patras</a>
+              <br>
+              <em>ACM MM 2024</em>
+              <br>
+              <a href="https://github.com/MrChenFeng/CLIPCleaner_ACMMM2024">code</a>
+            </div>
+          </div>
+          <div class="pub-item">
+            <div class="pub-thumbnail">
+              <div onmouseout="noisebox_stop()" onmouseover="noisebox_start()">
+                <img src="images/noisebox.png" alt="NoiseBox Thumbnail">
+              </div>
+            </div>
+            <div class="pub-details">
+              <a href="https://ieeexplore.ieee.org/document/10594806">
+                <span class="papertitle">NoiseBox: Towards More Efficient and Effective Learning with Noisy Labels</span>
+              </a>
+              <br>
+              <strong>Chen Feng</strong>,
+              <a href="https://ytzimiro.github.io/">Georgios Tzimiropoulos</a>,
+              <a href="https://www.eecs.qmul.ac.uk/~ioannisp/">Ioannis Patras</a>
+              <br>
+              <em>IEEE TCSVT 2024</em>
+            </div>
+          </div>
+          <div class="pub-item">
+            <div class="pub-thumbnail">
+              <div onmouseout="lafs_stop()" onmouseover="lafs_start()">
+                <img src="images/lafs.png" alt="LAFS Thumbnail">
+              </div>
+            </div>
+            <div class="pub-details">
+              <a href="https://arxiv.org/abs/2403.08161">
+                <span class="papertitle">LAFS: Landmark-based Facial Self-supervised Learning for Face Recognition</span>
+              </a>
+              <br>
+              <a href="https://szlbiubiubiu.github.io/">Zhonglin Sun</a>,
+              <strong>Chen Feng</strong>,
+              <a href="https://www.eecs.qmul.ac.uk/~ioannisp/">Ioannis Patras</a>,
+              <a href="https://ytzimiro.github.io/">Georgios Tzimiropoulos</a>
+              <br>
+              <em>CVPR 2024</em>
+              <br>
+              <a href="https://github.com/szlbiubiubiu/LAFS_CVPR2024">code</a>
+            </div>
+          </div>
+          <div class="pub-item">
+            <div class="pub-thumbnail">
+              <div onmouseout="cgh_stop()" onmouseover="cgh_start()">
+                <img src="images/cgh.png" alt="CGH Thumbnail">
+              </div>
+            </div>
+            <div class="pub-details">
+              <a href="https://openaccess.thecvf.com/content/WACV2024/html/Gao_Self-Supervised_Representation_Learning_With_Cross-Context_Learning_Between_Global_and_Hypercolumn_WACV_2024_paper.html">
+                <span class="papertitle">Self-Supervised Representation Learning with Cross-Context Learning between Global and Hypercolumn Features</span>
+              </a>
+              <br>
+              <a href="https://zaczgao.github.io/">Zheng Gao</a>,
+              <strong>Chen Feng</strong>,
+              <a href="https://www.eecs.qmul.ac.uk/~ioannisp/">Ioannis Patras</a>
+              <br>
+              <em>WACV 2024</em>
+              <br>
+              <a href="https://github.com/zaczgao/CGH-Hypercolumn">code</a>
+            </div>
+          </div>
+          <div class="pub-item">
+            <div class="pub-thumbnail">
+              <div onmouseout="maskcon_stop()" onmouseover="maskcon_start()">
+                <img src="images/maskcon.png" alt="MaskCon Thumbnail">
+              </div>
+            </div>
+            <div class="pub-details">
+              <a href="https://openaccess.thecvf.com/content/CVPR2023/html/Feng_MaskCon_Masked_Contrastive_Learning_for_Coarse-Labelled_Dataset_CVPR_2023_paper.html">
+                <span class="papertitle">MaskCon: Masked Contrastive Learning for Coarse-Labeled Dataset</span>
+              </a>
+              <br>
+              <strong>Chen Feng</strong>,
+              <a href="https://www.eecs.qmul.ac.uk/~ioannisp/">Ioannis Patras</a>
+              <br>
+              <em>CVPR 2023</em>
+              <br>
+              <a href="https://github.com/MrChenFeng/MaskCon_CVPR2023">code</a> /
+              <a href="https://www.youtube.com/watch?v=V4is0vAYNOw">video</a>
+            </div>
+          </div>
+          <div class="pub-item">
+            <div class="pub-thumbnail">
+              <div onmouseout="ssr_stop()" onmouseover="ssr_start()">
+                <img src="images/ssr.png" alt="SSR Thumbnail">
+              </div>
+            </div>
+            <div class="pub-details">
+              <a href="https://bmvc2022.mpi-inf.mpg.de/372/">
+                <span class="papertitle">SSR: An Efficient and Robust Framework for Learning with Unknown Label Noise</span>
+              </a>
+              <br>
+              <strong>Chen Feng</strong>,
+              <a href="https://ytzimiro.github.io/">Georgios Tzimiropoulos</a>,
+              <a href="https://www.eecs.qmul.ac.uk/~ioannisp/">Ioannis Patras</a>
+              <br>
+              <em>BMVC 2022</em>
+              <br>
+              <a href="https://github.com/MrChenFeng/SSR_BMVC2022">code</a>
+            </div>
+          </div>
+          <div class="pub-item">
+            <div class="pub-thumbnail">
+              <div onmouseout="ascl_stop()" onmouseover="ascl_start()">
+                <img src="images/ascl.png" alt="ASCL Thumbnail">
+              </div>
+            </div>
+            <div class="pub-details">
+              <a href="https://ieeexplore.ieee.org/document/9956660">
+                <span class="papertitle">Adaptive Soft Contrastive Learning</span>
+              </a>
+              <br>
+              <strong>Chen Feng</strong>,
+              <a href="https://www.eecs.qmul.ac.uk/~ioannisp/">Ioannis Patras</a>
+              <br>
+              <em>ICPR 2022</em>
+              <br>
+              <a href="https://github.com/MrChenFeng/Adaptive-Soft-Contrastive-Learning_ICPR2022">code</a>
+            </div>
+          </div>
         </div>
-      </td>
-      <td style="padding:5px 20px; width:75%; vertical-align:middle;">
-        <a href="https://arxiv.org/abs/2402.02629">
-          <span class="papertitle">PROSAC: Provably Safe Certification for Machine Learning Models under Adversarial Attacks</span>
+      </section>
+      <section class="academic-services" id="academic-services">
+        <h2>Academic Services</h2>
+        <p><strong>Programme committee</strong>: ICML, CVPR, NeurIPS, AAAI, ICLR, ICCV, ECCV, AISTATS, BMVC, ACCV, ICPR, COLM</p>
+        <p><strong>Reviewer</strong>: IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI), International Journal of Computer Vision (IJCV), IEEE Transactions on Neural Networks and Learning Systems (TNNLS), IEEE Transactions on Circuits and Systems for Video Technology (TCSVT), Image and Vision Computing</p>
+        <p><strong>Chair</strong>: BMVA Symposium on AI Security, ICIRA 2024 Special Session (Human-Centric AI in Clinical Robotics: Bridging the Future of Healthcare)</p>
+        <p><strong>Membership</strong>: Association for Computing Machinery (ACM), Institute of Electrical and Electronics Engineers (IEEE), The Computer Vision Foundation (CVF), The British Machine Vision Association(BMVA)</p>
+      </section>
+      <footer class="footer">
+        <a href="https://info.flagcounter.com/R3pf">
+          <img src="https://s01.flagcounter.com/map/R3pf/size_s/txt_000000/border_CCCCCC/pageviews_1/viewers_3/flags_0/" alt="Flag Counter" border="0">
         </a>
-        <br>
-        <strong>Chen Feng</strong>,
-        <a href="https://sites.google.com/view/ziquanliu">Ziquan Liu</a>,
-        <a href="https://www.ee.ucl.ac.uk/iiml/members/zhuo.html">Zhuo Zhi</a>,
-        <a href="https://ilijabogunovic.com/">Ilija Bogunovic</a>,
-        <a href="https://www.ucl.ac.uk/laws/people/carsten-gerner-beuerle">Carsten Gerner-Beuerle</a>,
-        <a href="https://www.ucl.ac.uk/electronic-electrical-engineering/people/dr-miguel-rodrigues">Miguel Rodrigues</a>
-        <br>
-        <em>AAAI 2025 (Oral)</em>
-      </td>
-    </tr>
-
-    <tr>
-      <td style="padding:5px 20px; width:25%; vertical-align:middle;">
-        <div class="one" onmouseout="clipcleaner_stop()" onmouseover="clipcleaner_start()">
-          <img src="images/clipcleaner.png" width="160" alt="CLIPCleaner Thumbnail">
-        </div>
-      </td>
-      <td style="padding:5px 20px; width:75%; vertical-align:middle;">
-        <a href="https://www.arxiv.org/abs/2408.10012">
-          <span class="papertitle">CLIPCleaner: Cleaning Noisy Labels with CLIP</span>
-        </a>
-        <br>
-        <strong>Chen Feng</strong>,
-        <a href="https://ytzimiro.github.io/">Georgios Tzimiropoulos</a>,
-        <a href="https://www.eecs.qmul.ac.uk/~ioannisp/">Ioannis Patras</a>
-        <br>
-        <em>ACM MM 2024</em>
-        <br>
-        <a href="https://github.com/MrChenFeng/CLIPCleaner_ACMMM2024">code</a>
-      </td>
-    </tr>
-
-    <tr>
-      <td style="padding:5px 20px; width:25%; vertical-align:middle;">
-        <div class="one" onmouseout="noisebox_stop()" onmouseover="noisebox_start()">
-          <img src="images/noisebox.png" width="160" alt="NoiseBox Thumbnail">
-        </div>
-      </td>
-      <td style="padding:5px 20px; width:75%; vertical-align:middle;">
-        <a href="https://ieeexplore.ieee.org/document/10594806">
-          <span class="papertitle">NoiseBox: Towards More Efficient and Effective Learning with Noisy Labels</span>
-        </a>
-        <br>
-        <strong>Chen Feng</strong>,
-        <a href="https://ytzimiro.github.io/">Georgios Tzimiropoulos</a>,
-        <a href="https://www.eecs.qmul.ac.uk/~ioannisp/">Ioannis Patras</a>
-        <br>
-        <em>IEEE TCSVT 2024</em>
-      </td>
-    </tr>
-
-    <tr>
-      <td style="padding:5px 20px; width:25%; vertical-align:middle;">
-        <div class="one" onmouseout="lafs_stop()" onmouseover="lafs_start()">
-          <img src="images/lafs.png" width="160" alt="LAFS Thumbnail">
-        </div>
-      </td>
-      <td style="padding:5px 20px; width:75%; vertical-align:middle;">
-        <a href="https://arxiv.org/abs/2403.08161">
-          <span class="papertitle">LAFS: Landmark-based Facial Self-supervised Learning for Face Recognition</span>
-        </a>
-        <br>
-        <a href="https://szlbiubiubiu.github.io/">Zhonglin Sun</a>,
-        <strong>Chen Feng</strong>,
-        <a href="https://www.eecs.qmul.ac.uk/~ioannisp/">Ioannis Patras</a>,
-        <a href="https://ytzimiro.github.io/">Georgios Tzimiropoulos</a>
-        <br>
-        <em>CVPR 2024</em>
-        <br>
-        <a href="https://github.com/szlbiubiubiu/LAFS_CVPR2024">code</a>
-      </td>
-    </tr>
-
-    <tr>
-      <td style="padding:5px 20px; width:25%; vertical-align:middle;">
-        <div class="one" onmouseout="cgh_stop()" onmouseover="cgh_start()">
-          <img src="images/cgh.png" width="160" alt="CGH Thumbnail">
-        </div>
-      </td>
-      <td style="padding:5px 20px; width:75%; vertical-align:middle;">
-        <a href="https://openaccess.thecvf.com/content/WACV2024/html/Gao_Self-Supervised_Representation_Learning_With_Cross-Context_Learning_Between_Global_and_Hypercolumn_WACV_2024_paper.html">
-          <span class="papertitle">Self-Supervised Representation Learning with Cross-Context Learning between Global and Hypercolumn Features</span>
-        </a>
-        <br>
-        <a href="https://zaczgao.github.io/">Zheng Gao</a>,
-        <strong>Chen Feng</strong>,
-        <a href="https://www.eecs.qmul.ac.uk/~ioannisp/">Ioannis Patras</a>
-        <br>
-        <em>WACV 2024</em>
-        <br>
-        <a href="https://github.com/zaczgao/CGH-Hypercolumn">code</a>
-      </td>
-    </tr>
-
-    <tr>
-      <td style="padding:5px 20px; width:25%; vertical-align:middle;">
-        <div class="one" onmouseout="maskcon_stop()" onmouseover="maskcon_start()">
-          <img src="images/maskcon.png" width="160" alt="MaskCon Thumbnail">
-        </div>
-      </td>
-      <td style="padding:5px 20px; width:75%; vertical-align:middle;">
-        <a href="https://openaccess.thecvf.com/content/CVPR2023/html/Feng_MaskCon_Masked_Contrastive_Learning_for_Coarse-Labelled_Dataset_CVPR_2023_paper.html">
-          <span class="papertitle">MaskCon: Masked Contrastive Learning for Coarse-Labeled Dataset</span>
-        </a>
-        <br>
-        <strong>Chen Feng</strong>,
-        <a href="https://www.eecs.qmul.ac.uk/~ioannisp/">Ioannis Patras</a>
-        <br>
-        <em>CVPR 2023</em>
-        <br>
-        <a href="https://github.com/MrChenFeng/MaskCon_CVPR2023">code</a> /
-        <a href="https://www.youtube.com/watch?v=V4is0vAYNOw">video</a>
-      </td>
-    </tr>
-
-    <tr>
-      <td style="padding:5px 20px; width:25%; vertical-align:middle;">
-        <div class="one" onmouseout="ssr_stop()" onmouseover="ssr_start()">
-          <img src="images/ssr.png" width="160" alt="SSR Thumbnail">
-        </div>
-      </td>
-      <td style="padding:5px 20px; width:75%; vertical-align:middle;">
-        <a href="https://bmvc2022.mpi-inf.mpg.de/372/">
-          <span class="papertitle">SSR: An Efficient and Robust Framework for Learning with Unknown Label Noise</span>
-        </a>
-        <br>
-        <strong>Chen Feng</strong>,
-        <a href="https://ytzimiro.github.io/">Georgios Tzimiropoulos</a>,
-        <a href="https://www.eecs.qmul.ac.uk/~ioannisp/">Ioannis Patras</a>
-        <br>
-        <em>BMVC 2022</em>
-        <br>
-        <a href="https://github.com/MrChenFeng/SSR_BMVC2022">code</a>
-      </td>
-    </tr>
-
-    <tr>
-      <td style="padding:5px 20px; width:25%; vertical-align:middle;">
-        <div class="one" onmouseout="ascl_stop()" onmouseover="ascl_start()">
-          <img src="images/ascl.png" width="160" alt="ASCL Thumbnail">
-        </div>
-      </td>
-      <td style="padding:5px 20px; width:75%; vertical-align:middle;">
-        <a href="https://ieeexplore.ieee.org/document/9956660">
-          <span class="papertitle">Adaptive Soft Contrastive Learning</span>
-        </a>
-        <br>
-        <strong>Chen Feng</strong>,
-        <a href="https://www.eecs.qmul.ac.uk/~ioannisp/">Ioannis Patras</a>
-        <br>
-        <em>ICPR 2022</em>
-        <br>
-        <a href="https://github.com/MrChenFeng/Adaptive-Soft-Contrastive-Learning_ICPR2022">code</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<table width="100%" align="center" border="0" cellspacing="0" cellpadding="20"><tbody>
-  <tr>
-    <td>
-      <h2><b>Academic services</b></h2>
-       <p><b>Conferences</b>: ICML, CVPR, NeurIPS, AAAI, ICLR, ICCV, ECCV, AISTATS, BMVC, ACCV, ICPR, COLM</p>
-       <p><b>Journals</b>: IEEE Transactions on Pattern Analysis and Machine Intelligence(TPAMI), International Journal of Computer Vision(IJCV), IEEE Transactions on Neural Networks and Learning Systems(TNNLS), IEEE Transactions on Circuits and Systems for Video Technology(TCSVT), Image and Vision Computing</p>
-    </td>
-  </tr>
-</tbody></table>
-
-
-<div align="center">
-<a href="https://info.flagcounter.com/R3pf"><img src="https://s01.flagcounter.com/map/R3pf/size_s/txt_000000/border_CCCCCC/pageviews_1/viewers_3/flags_0/" alt="Flag Counter" border="0"></a>
-</div>
-
-
-
-
-        </td>
-      </tr>
-    </table>
-<!--  </body>-->
-<script>
-    function prosac_start() { document.querySelector('img[src="images/prosac.png"]').style.transform = 'scale(2)'; }
-    function prosac_stop() { document.querySelector('img[src="images/prosac.png"]').style.transform = 'scale(1)'; }
-    function clipcleaner_start() { document.querySelector('img[src="images/clipcleaner.png"]').style.transform = 'scale(2)'; }
-    function clipcleaner_stop() { document.querySelector('img[src="images/clipcleaner.png"]').style.transform = 'scale(1)'; }
-    function noisebox_start() { document.querySelector('img[src="images/noisebox.png"]').style.transform = 'scale(2)'; }
-    function noisebox_stop() { document.querySelector('img[src="images/noisebox.png"]').style.transform = 'scale(1)'; }
-    function lafs_start() { document.querySelector('img[src="images/lafs.png"]').style.transform = 'scale(2)'; }
-    function lafs_stop() { document.querySelector('img[src="images/lafs.png"]').style.transform = 'scale(1)'; }
-    function cgh_start() { document.querySelector('img[src="images/cgh.png"]').style.transform = 'scale(2)'; }
-    function cgh_stop() { document.querySelector('img[src="images/cgh.png"]').style.transform = 'scale(1)'; }
-    function maskcon_start() { document.querySelector('img[src="images/maskcon.png"]').style.transform = 'scale(2)'; }
-    function maskcon_stop() { document.querySelector('img[src="images/maskcon.png"]').style.transform = 'scale(1)'; }
-    function ssr_start() { document.querySelector('img[src="images/ssr.png"]').style.transform = 'scale(2)'; }
-    function ssr_stop() { document.querySelector('img[src="images/ssr.png"]').style.transform = 'scale(1)'; }
-    function ascl_start() { document.querySelector('img[src="images/ascl.png"]').style.transform = 'scale(2)'; }
-    function ascl_stop() { document.querySelector('img[src="images/ascl.png"]').style.transform = 'scale(1)'; }
-</script>
+        <p>&copy; 2025 Chen Feng. All rights reserved.</p>
+      </footer>
+    </div>
+    <script>
+      const toggleButton = document.querySelector('.theme-toggle');
+      const body = document.body;
+      const icon = toggleButton.querySelector('i');
+      function loadTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+          if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+          } else {
+            body.classList.remove('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+          }
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          body.classList.add('dark-mode');
+          icon.classList.remove('fa-sun');
+          icon.classList.add('fa-moon');
+          localStorage.setItem('theme', 'dark');
+        }
+      }
+      loadTheme();
+      function toggleTheme() {
+        body.classList.toggle('dark-mode');
+        if (body.classList.contains('dark-mode')) {
+          icon.classList.remove('fa-sun');
+          icon.classList.add('fa-moon');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          icon.classList.remove('fa-moon');
+          icon.classList.add('fa-sun');
+          localStorage.setItem('theme', 'light');
+        }
+      }
+      toggleButton.addEventListener('click', toggleTheme);
+      const hamburger = document.querySelector('.hamburger');
+      const navMenu = document.querySelector('.nav-container ul');
+      const navLinks = document.querySelectorAll('.nav-container a');
+      function toggleMenu() {
+        navMenu.classList.toggle('active');
+        const icon = hamburger.querySelector('i');
+        if (navMenu.classList.contains('active')) {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+        } else {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
+      }
+      hamburger.addEventListener('click', toggleMenu);
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => toggleMenu());
+      });
+      function prosac_start() { document.querySelector('img[src="images/prosac.png"]').style.transform = 'scale(1.2)'; }
+      function prosac_stop() { document.querySelector('img[src="images/prosac.png"]').style.transform = 'scale(1)'; }
+      function clipcleaner_start() { document.querySelector('img[src="images/clipcleaner.png"]').style.transform = 'scale(1.2)'; }
+      function clipcleaner_stop() { document.querySelector('img[src="images/clipcleaner.png"]').style.transform = 'scale(1)'; }
+      function noisebox_start() { document.querySelector('img[src="images/noisebox.png"]').style.transform = 'scale(1.2)'; }
+      function noisebox_stop() { document.querySelector('img[src="images/noisebox.png"]').style.transform = 'scale(1)'; }
+      function lafs_start() { document.querySelector('img[src="images/lafs.png"]').style.transform = 'scale(1.2)'; }
+      function lafs_stop() { document.querySelector('img[src="images/lafs.png"]').style.transform = 'scale(1)'; }
+      function cgh_start() { document.querySelector('img[src="images/cgh.png"]').style.transform = 'scale(1.2)'; }
+      function cgh_stop() { document.querySelector('img[src="images/cgh.png"]').style.transform = 'scale(1)'; }
+      function maskcon_start() { document.querySelector('img[src="images/maskcon.png"]').style.transform = 'scale(1.2)'; }
+      function maskcon_stop() { document.querySelector('img[src="images/maskcon.png"]').style.transform = 'scale(1)'; }
+      function ssr_start() { document.querySelector('img[src="images/ssr.png"]').style.transform = 'scale(1.2)'; }
+      function ssr_stop() { document.querySelector('img[src="images/ssr.png"]').style.transform = 'scale(1)'; }
+      function ascl_start() { document.querySelector('img[src="images/ascl.png"]').style.transform = 'scale(1.2)'; }
+      function ascl_stop() { document.querySelector('img[src="images/ascl.png"]').style.transform = 'scale(1)'; }
+    </script>
+  </body>
 </html>
