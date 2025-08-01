@@ -20,7 +20,7 @@
         background-color: #f8f9fa;
         color: #2d3748;
         font-family: 'Montserrat', 'Source Sans Pro', sans-serif;
-        font-size: 0.9em;
+        font-size: 0.8em;
         line-height: 1.5;
         margin: 0;
         padding: 0;
@@ -440,10 +440,10 @@
           flex: 0 0 auto;
           width: 100px;
           margin-bottom: 10px;
-          font-size: 0.7em;
+          font-size: 0.8em;
         }
         .news-content {
-          font-size: 0.7em;
+          font-size: 0.8em;
         }
         .pub-thumbnail {
           flex: 0 0 120px;
@@ -452,7 +452,7 @@
           max-width: 120px;
         }
         .pub-details {
-          font-size: 0.7em;
+          font-size: 0.8em;
         }
         .news-scroll {
           max-height: 800px;
@@ -468,7 +468,7 @@
           font-size: 1.1em;
         }
         .footer {
-          font-size: 0.7em;
+          font-size: 0.5em;
         }
       }
     </style>
@@ -796,8 +796,20 @@
         <a href="https://info.flagcounter.com/R3pf">
           <img src="https://s01.flagcounter.com/map/R3pf/size_s/txt_000000/border_CCCCCC/pageviews_1/viewers_3/flags_0/" alt="Flag Counter" border="0">
         </a>
-        <p>&copy; 2025 Chen Feng. All rights reserved.</p>
-      </footer>
+    <p>&copy; 2025 Chen Feng. All rights reserved.
+      Last updated at <span id="last-updated"></span>.</p>
+  </footer>
+
+  <script>
+    const now = new Date();
+    const formattedDate = now.toLocaleDateString('en-GB', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+    document.getElementById('last-updated').textContent = formattedDate;
+  </script>
+
     </div>
     <script>
       const toggleButton = document.querySelector('.theme-toggle');
