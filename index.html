@@ -20,7 +20,7 @@
         background-color: #f8f9fa;
         color: #2d3748;
         font-family: 'Montserrat', 'Source Sans Pro', sans-serif;
-        font-size: 0.8em;
+        font-size: 0.7em;
         line-height: 1.5;
         margin: 0;
         padding: 0;
@@ -31,7 +31,7 @@
         background-color: #1a202c;
         color: #e2e8f0;
       }
-      h1, h2 {
+      h1, h2, h3 {
         font-family: 'Merriweather', serif;
         color: #1a4971;
       }
@@ -76,7 +76,7 @@
         color: #63b3ed;
       }
       .name {
-        padding-top: 20px;
+        /*padding-top: 20px;*/
         font-size: 24px;
       }
       .nav-container {
@@ -203,7 +203,7 @@
       }
       .container {
         width: 100%;
-        max-width: 800px;
+        max-width: 1000px;
         margin: 20px auto;
         padding: 0 20px;
       }
@@ -236,7 +236,7 @@
         display: flex;
         justify-content: center;
         gap: 15px;
-        margin-top: 20px;
+        margin-top: 10px;
       }
       .social-icon {
         font-size: 1.5em;
@@ -249,7 +249,7 @@
       }
       .social-icon:hover {
         color: #3182ce;
-        transform: scale(1.5);
+        transform: scale(1.1);
       }
       body.dark-mode .social-icon:hover {
         color: #90cdf4;
@@ -439,7 +439,7 @@
           flex: 0 0 100px;
         }
         .profile-image img {
-          max-width: 100px;
+          max-width: 200px;
         }
         .news-item, .pub-item {
           flex-direction: row;
@@ -499,20 +499,31 @@
       <section class="profile">
         <div class="profile-text">
           <h1 class="name" style="text-align: center;">Chen Feng （冯晨）</h1>
-          <p>
-            I'm a Postdoctoral Research Associate at <a href="https://www.ucl.ac.uk/">University College London</a>,
-            working with <a href="https://www.ucl.ac.uk/electronic-electrical-engineering/people/dr-miguel-rodrigues">Prof. Miguel Rodrigues</a>. I finished my PhD at <a href="https://www.qmul.ac.uk/">Queen Mary University of London</a>,
-            working in CV/ML with <a href="http://www.eecs.qmul.ac.uk/~ioannisp/">Prof. Ioannis Patras</a>. I also visited <a href="https://mhug.disi.unitn.it/#/">University of Trento</a>
-            as an <a href="https://www.ai4media.eu/junior-fellows-program/">AI4Media Junior Exchange Fellow</a>,
-            working with <a href="https://disi.unitn.it/~sebe/">Prof. Nicu Sebe</a>.
-          </p>
-          <p>
-            I earned my master’s degree from <a href="https://www.au.tsinghua.edu.cn/en/">Tsinghua University</a>, where I conducted research in bioinformatics under the supervision of <a href="http://lifeome.net/glab/jgu/index.htm">Prof. Jin Gu</a>.
-            Before that, I received my bachelor's degree from <a href="https://aien.nankai.edu.cn/">Nankai University</a>.
-          </p>
+                    <h3 style="text-align: center;">Lecturer in Machine Learning</h3>
+
+<p>
+  I am a Lecturer (Assistant Professor) in Machine Learning at <a href="https://www.qub.ac.uk/">Queen's University Belfast</a>.
+  My research explores machine learning under <strong>imperfect information</strong>, spanning self-supervised learning,
+  semi-supervised learning, and learning with noisy or coarse labels. I am also focused on assessing and improving the safety of
+  <strong>imperfect models</strong>, such as large language models (LLMs).
+  I'm happy to connect on these topics or potential collaborations—please feel free to email me.
+</p>
+<p>
+  Previously, I was a Postdoctoral Research Associate at <a href="https://www.ucl.ac.uk/">University College London</a>,
+  working with <a href="https://www.ee.ucl.ac.uk/iiml/members/members.html#principal-investigator">Prof. Miguel Rodrigues</a>.
+  I earned my PhD from <a href="https://www.qmul.ac.uk/">Queen Mary University of London</a>
+  under the guidance of <a href="http://www.eecs.qmul.ac.uk/~ioannisp/">Prof. Ioannis Patras</a>.
+  I also spent time as an <a href="https://www.ai4media.eu/junior-fellows-program/">AI4Media Junior Exchange Fellow</a>
+  at <a href="https://mhug.disi.unitn.it/#/">University of Trento</a>, collaborating with <a href="https://disi.unitn.it/~sebe/">Prof. Nicu Sebe</a>.
+</p>
+<p>
+  I hold a master’s degree from <a href="https://www.au.tsinghua.edu.cn/en/">Tsinghua University</a>,
+  where I conducted bioinformatics research supervised by <a href="http://lifeome.net/glab/jgu/index.htm">Prof. Jin Gu</a>.
+  I completed my bachelor’s degree at <a href="https://aien.nankai.edu.cn/">Nankai University</a>.
+</p>
           <div class="social-icons">
             <svg style="display: none;">
-              <symbol id="xiaohongshu-icon" viewBox="0 0 377.97 376.53">
+              <symbol id="xiaohongshu-icon"so viewBox="0 0 377.97 376.53">
                 <path d="M43.86,1.11C21.81,5.7,3.59,22.91,1.34,46.07c-2.33,23.92,0,49.25,0,73.3v149.53c0,27.5-6.94,64.79,10.75,87.96,19.11,25.02,53.98,19.06,81.6,19.06h214.03c8.48,0,18.08,1.24,26.39-.49,22.05-4.59,40.26-21.8,42.51-44.96,2.33-23.92,0-49.25,0-73.3V107.64c0-27.5,6.94-64.79-10.75-87.96C346.76-5.34,311.89.62,284.27.62H70.24c-8.48,0-18.08-1.24-26.39.49M177.26,134.02l-10.26,27.85h17.59l-14.66,35.18,13.19,1.47c-1.45,3.93-3.4,11.34-6.35,14.42-2.17,2.26-5.48,1.71-8.31,1.71-6.39,0-19.3,2.65-22.72-4.4-1.57-3.23.68-7.31,1.95-10.26,2.66-6.17,6.19-12.48,7.57-19.06-3.19,0-7.22.63-10.26-.49-11.4-4.19,1.28-22.52,3.91-28.83,1.85-4.43,4.04-14.05,8.06-16.86,5.65-3.94,14.24-1.21,20.28-.73M61.45,226.38c4.03,0,10.02,1.2,12.46-2.93,2.59-4.39.73-14.06.73-19.06v-48.38c0-4.53-2.29-18.38,1.71-21.26,3.29-2.37,17.1-1.87,18.57,2.2,2.4,6.66.24,17.83.24,24.92v46.91c0,8.04,1.39,17.39-1.95,24.92-3.19,7.18-18.04,13.59-25.41,8.06-3.24-2.43-5.55-11.6-6.35-15.39M284.27,134.02v7.33c5.47,0,12.33-1.12,17.59.49,17.56,5.36,16.13,22.61,16.13,37.63,2.93,0,5.93-.23,8.8.49,16.85,4.21,14.66,21.06,14.66,34.69,0,7.27,1.36,15.86-3.42,21.99-5.27,6.75-13.9,5.86-21.5,5.86-2.36,0-6.25.75-8.31-.73-3.85-2.77-5.54-11-6.35-15.39,4.82,0,13.51,1.65,17.35-1.95,4.52-4.25,2.67-20.86-2.69-23.7-2.84-1.5-7.16-.73-10.26-.73h-21.99v42.51h-20.52v-42.51h-20.52v-20.52h20.52v-17.59h-13.19v-20.52h13.19v-7.33h20.52M237.36,141.35v20.52h-11.73v61.57h19.06v19.06h-67.43l7.82-18.32,18.57-.73v-61.57h-11.73v-20.52h45.44M320.92,161.88c0-4.17-.76-9.17.49-13.19,4.9-15.82,28.76-3.07,16.86,10.02-1.35,1.49-3.73,2.22-5.62,2.69-3.75.94-7.89.49-11.73.49M61.45,161.88l-6.11,54.24-10.02,17.59-8.8-23.46,4.4-48.38h20.52M128.88,161.88l4.4,48.38-8.8,21.99h-2.93c-7.87-12.46-8.87-25.31-10.26-39.58-.99-10.14-2.93-20.58-2.93-30.78h20.52M284.27,161.88v17.59h13.19v-17.59h-13.19M174.32,223.45l-7.33,19.06h-32.25l7.82-19.79,11.24.24,20.52.49Z"/>
               </symbol>
             </svg>
@@ -542,8 +553,8 @@
           </div>
         </div>
         <div class="profile-image">
-          <a href="images/profile.jpg">
-            <img src="images/profile.jpg" alt="Profile photo of Chen Feng, a Postdoctoral Research Associate at UCL">
+          <a href="images/gown.jpg">
+            <img src="images/gown.jpg" alt="Profile photo of Dr. Chen Feng">
           </a>
         </div>
       </section>
@@ -623,14 +634,14 @@
           </div>
         </div>
       </section>
-      <section class="pubs-container" id="research">
+      <section class="news-container" id="research">
         <h2>Research</h2>
-        <p>
-          I'm interested in various weakly supervised learning problems in the context of computer vision, including
-          completely unlabelled <strong>self-supervised learning</strong>, <strong>semi-supervised learning</strong> with partial data having labels, and <strong>learning with noisy/coarse labels</strong>.
-          I'm happy to discuss any related topics and possible collaborations, please simply drop me an email!
-        </p>
-        <h3>Publications</h3>
+<!--        <p>-->
+<!--          I'm interested in various weakly supervised learning problems in the context of computer vision, including-->
+<!--          completely unlabelled <strong>self-supervised learning</strong>, <strong>semi-supervised learning</strong> with partial data having labels, and <strong>learning with noisy/coarse labels</strong>.-->
+<!--          I'm happy to discuss any related topics and possible collaborations, please simply drop me an email!-->
+<!--        </p>-->
+<!--        <h3>Publications</h3>-->
         <div class="pubs-scroll">
           <div class="pub-item">
             <div class="pub-thumbnail">
@@ -793,7 +804,7 @@
           </div>
         </div>
       </section>
-      <section class="academic-services" id="academic-services">
+      <section class="news-container" id="academic-services">
         <h2>Academic Services</h2>
         <p><strong>Programme committee</strong>: ICML, CVPR, NeurIPS, AAAI, ICLR, ICCV, ECCV, AISTATS, BMVC, ACCV, ICPR, COLM</p>
         <p><strong>Reviewer</strong>: IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI), International Journal of Computer Vision (IJCV), IEEE Transactions on Neural Networks and Learning Systems (TNNLS), IEEE Transactions on Circuits and Systems for Video Technology (TCSVT), Image and Vision Computing</p>
@@ -805,7 +816,7 @@
           <img src="https://s01.flagcounter.com/map/R3pf/size_s/txt_000000/border_CCCCCC/pageviews_1/viewers_3/flags_0/" alt="Flag Counter" border="0">
         </a>
         <p>&copy; 2025 Chen Feng. All rights reserved.
-          Last updated at 2 August 2025.</p>
+          Last updated at 24 August 2025.</p>
       </footer>
     </div>
     <script>
