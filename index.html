@@ -3,646 +3,566 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chen Feng (冯晨) | Lecturer at QUB</title>
-    <meta name="author" content="Chen Feng">
+    <title>Prof. Chen Feng | Dashboard</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* 全局高级定制配色 */
         :root {
-            --sidebar-bg: #0f172a;     /* 更深邃的深蓝色侧边栏 */
-            --sidebar-text: #e2e8f0;
-            --accent-color: #0284c7;   /* 更加沉稳的科技蓝 */
-            --accent-light: #e0f2fe;   /* 亮色模式下的浅蓝背景 */
-            --text-main: #334155;
-            --text-heading: #0f172a;
-            --bg-main: #f8fafc;        /* 极浅的高级灰底色 */
-            --border-color: #e2e8f0;
-            --card-bg: #ffffff;
-            --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05); /* 软阴影 */
-            --shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --bg-color: #09090b;
+            --card-bg: #18181b;
+            --card-border: #27272a;
+            --text-main: #f4f4f5;
+            --text-muted: #a1a1aa;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.12);
+            --danger: #ef4444;
+            --scrollbar-bg: #27272a;
         }
 
-        /* 暗黑模式极致调优 */
-        body.dark-mode {
-            --sidebar-bg: #020617; 
-            --sidebar-text: #cbd5e1;
-            --accent-color: #38bdf8; 
-            --accent-light: rgba(56, 189, 248, 0.15);
-            --text-main: #94a3b8;
-            --text-heading: #f1f5f9;
-            --bg-main: #0b1120;        /* 护眼暗黑底色 */
-            --border-color: #1e293b;
-            --card-bg: #0f172a;        /* 卡片略亮于底色 */
-            --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
-            --shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+        body.light-mode {
+            --bg-color: #f4f4f5;
+            --card-bg: #ffffff;
+            --card-border: #e4e4e7;
+            --text-main: #09090b;
+            --text-muted: #71717a;
+            --accent: #0284c7;
+            --accent-glow: rgba(2, 132, 199, 0.08);
+            --scrollbar-bg: #e4e4e7;
         }
-        
-        html { scroll-behavior: smooth; scroll-padding-top: 40px; }
+
+        * { box-sizing: border-box; }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0; padding: 0;
+            margin: 0; padding: 40px 20px;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
             color: var(--text-main);
-            background-color: var(--bg-main);
-            line-height: 1.7;
-            display: flex;
-            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s;
-        }
-
-        h1, h2, h3 { color: var(--text-heading); transition: color 0.3s ease; letter-spacing: -0.02em; }
-        a { color: var(--accent-color); text-decoration: none; transition: 0.3s; }
-        a:hover { color: var(--text-heading); text-decoration: underline; }
-
-        /* ========== 左侧边栏 ========== */
-        .sidebar {
-            width: 300px;
-            background-color: var(--sidebar-bg);
-            color: var(--sidebar-text);
-            height: 100vh;
-            position: fixed;
-            top: 0; left: 0;
             display: flex; flex-direction: column; align-items: center;
-            padding: 45px 25px 25px;
-            box-sizing: border-box;
-            overflow-y: auto;
-            z-index: 1000;
-            box-shadow: 4px 0 24px rgba(0,0,0,0.06);
-            transition: background-color 0.3s ease;
+            min-height: 100vh;
+            transition: background-color 0.4s;
+            line-height: 1.6;
         }
 
-        /* 头像悬停特效 */
-        .profile-img {
-            width: 140px; height: 140px;
-            border-radius: 50%;
-            border: 4px solid rgba(255,255,255,0.1);
-            margin-bottom: 20px;
-            object-fit: cover;
-            background-color: var(--sidebar-text);
-            transition: transform 0.4s ease, border-color 0.4s ease;
-        }
-        .profile-img:hover {
-            transform: scale(1.05) rotate(2deg);
-            border-color: var(--accent-color);
-        }
-
-        .sidebar h1 { font-size: 1.6em; margin: 0 0 5px 0; color: white; text-align: center; font-weight: 700; }
-        .sidebar p.title { font-size: 0.9em; color: #94a3b8; text-align: center; margin-bottom: 30px; margin-top: 5px; font-weight: 500; }
-
-        /* 社交图标排版优化 */
-        .social-icons { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 35px; }
-        .social-icons a { 
-            color: #94a3b8; font-size: 1.3em; 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-            display: flex; align-items: center;
-        }
-        .social-icons a:hover { transform: translateY(-3px) scale(1.1); color: var(--accent-color); }
-        .social-icons svg { width: 1em; height: 1em; fill: currentColor; }
-
-        /* 导航栏高级动效 */
-        .sidebar nav { width: 100%; margin-bottom: 20px;}
-        .sidebar nav ul { list-style: none; padding: 0; margin: 0; width: 100%; }
-        .sidebar nav ul li { margin-bottom: 10px; }
-        .sidebar nav ul li a {
-            color: var(--sidebar-text); font-size: 1em; display: block;
-            padding: 10px 20px; border-radius: 8px; font-weight: 600;
-            transition: all 0.3s ease; text-align: center;
-            position: relative; overflow: hidden;
-        }
-        .sidebar nav ul li a:hover { 
-            background-color: rgba(255,255,255,0.08); 
-            color: #fff; text-decoration: none; 
-            transform: translateX(5px); /* 微移效果 */
-        }
-
-        /* 底部控制按钮优化 */
-        .controls { display: flex; gap: 15px; margin-top: auto; width: 100%; justify-content: center;}
-        .control-btn {
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-            color: var(--sidebar-text); border-radius: 20px;
-            padding: 8px 20px; cursor: pointer; transition: all 0.3s; 
-            font-family: inherit; font-size: 0.85em; font-weight: 600;
-        }
-        .control-btn:hover { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
-
-        /* ========== 右侧主内容区 ========== */
-        .main-content {
-            margin-left: 300px;
-            padding: 60px 8%;
-            flex: 1;
-            max-width: 1000px;
-        }
-
-        section { margin-bottom: 70px; }
+        a { color: var(--accent); text-decoration: none; transition: 0.2s; }
+        a:hover { opacity: 0.8; }
         
-        /* 标题带渐变强调线 */
-        h2.section-title {
-            font-size: 2em; margin-bottom: 30px; padding-bottom: 15px;
-            border-bottom: 2px solid var(--border-color);
+        /* 正文超链接优化样式 */
+        .text-link {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: rgba(56, 189, 248, 0.4);
+            font-weight: 500;
+        }
+        body.light-mode .text-link { text-decoration-color: rgba(2, 132, 199, 0.3); }
+        .text-link:hover { text-decoration-color: var(--accent); }
+
+        /* ================== Bento Box Grid 系统 ================== */
+        .bento-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(160px, auto);
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
             position: relative;
-            display: flex; align-items: center; gap: 12px;
-            font-weight: 700; letter-spacing: -0.02em;
         }
-        h2.section-title::after {
-            content: ''; position: absolute; left: 0; bottom: -2px;
-            height: 2px; width: 60px; background-color: var(--accent-color);
-            border-radius: 2px;
-        }
-        h2.section-title i { color: var(--accent-color); font-size: 0.85em; }
 
-        /* 高亮卡片 (招聘) */
-        .highlight-box {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-left: 5px solid var(--accent-color);
-            border-radius: 12px; padding: 30px;
-            box-shadow: var(--shadow-soft);
-            transition: all 0.3s ease;
-            position: relative; overflow: hidden;
+        /* 探照灯卡片通用样式 */
+        .bento-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+            display: flex; flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s;
         }
-        .highlight-box:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+
+        .bento-card:hover { transform: translateY(-2px); border-color: var(--text-muted); z-index: 10; }
+
+        .bento-card::before {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), var(--accent-glow), transparent 40%);
+            opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 0;
+        }
+        .bento-card:hover::before { opacity: 1; }
+        .bento-card > * { position: relative; z-index: 1; }
+
+        /* ================== 网格占位规划 ================== */
+        .span-col-1 { grid-column: span 1; }
+        .span-col-2 { grid-column: span 2; }
+        .span-col-4 { grid-column: span 4; }
+        .span-row-1 { grid-row: span 1; }
+        .span-row-2 { grid-row: span 2; }
+        .span-row-3 { grid-row: span 3; }
+
+        /* ================== 具体内容区块 ================== */
         
-        /* 呼吸灯特效 (LIVE Indicator) */
-        .live-dot {
-            display: inline-block; width: 10px; height: 10px;
-            background-color: #10b981; border-radius: 50%;
-            margin-right: 8px; position: relative;
-        }
-        .live-dot::after {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            border-radius: 50%; border: 2px solid #10b981;
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(2.5); opacity: 0; }
-        }
+        /* 1. 核心档案 */
+        .profile-header { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
+        .profile-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid var(--card-border); }
+        .name-title h1 { margin: 0 0 5px 0; font-size: 2.2rem; font-weight: 700; letter-spacing: -0.5px; line-height: 1.1; }
+        .name-title p { margin: 0; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; }
+        .tags-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+        .tag { padding: 4px 12px; background: rgba(128,128,128,0.1); border: 1px solid var(--card-border); border-radius: 12px; font-size: 0.8rem; }
 
-        /* 列表容器重构 (添加滚动条美化) */
-        .list-container {
-            background: var(--card-bg); border: 1px solid var(--border-color);
-            border-radius: 12px; padding: 25px 30px;
-            box-shadow: var(--shadow-soft);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
+        /* 2. 状态卡与招聘卡 */
+        .center-card { justify-content: center; align-items: center; text-align: center; }
+        .location-icon { font-size: 2.5rem; margin-bottom: 15px; }
+        .hiring-card { border-color: rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.02); }
+        .live-ping { width: 12px; height: 12px; background: var(--danger); border-radius: 50%; box-shadow: 0 0 10px var(--danger); margin-bottom: 15px; animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite; }
+        @keyframes ping { 75%, 100% { transform: scale(2.5); opacity: 0; } }
+
+        /* 3. 社交图标矩阵 */
+        .social-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; height: 100%; }
+        .social-link { width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; background: rgba(128,128,128,0.1); border-radius: 12px; color: var(--text-main); font-size: 1.3rem; transition: 0.3s; }
+        .social-link:hover { background: var(--accent); color: #fff; transform: scale(1.1); }
+        .social-link svg { width: 1.1em; height: 1.1em; fill: currentColor; }
+
+        /* 4. 自定义滚动条区 (News & Services) */
+        .card-title { font-size: 1.2rem; font-weight: 600; margin: 0 0 15px 0; display: flex; align-items: center; gap: 10px; }
+        .scroll-area { overflow-y: auto; padding-right: 15px; display: flex; flex-direction: column; gap: 15px; height: 100%; max-height: 380px; }
+        .scroll-area::-webkit-scrollbar { width: 4px; }
+        .scroll-area::-webkit-scrollbar-track { background: transparent; }
+        .scroll-area::-webkit-scrollbar-thumb { background: var(--scrollbar-bg); border-radius: 4px; }
         
-        .scrollable-list {
-            max-height: 500px;
-            overflow-y: auto;
-            padding-right: 15px;
-        }
-        
-        /* Webkit 滚动条美化 */
-        .scrollable-list::-webkit-scrollbar { width: 6px; }
-        .scrollable-list::-webkit-scrollbar-track { background: transparent; }
-        .scrollable-list::-webkit-scrollbar-thumb { background-color: rgba(148, 163, 184, 0.4); border-radius: 10px; }
-        .scrollable-list::-webkit-scrollbar-thumb:hover { background-color: var(--accent-color); }
+        .news-item { padding-left: 15px; border-left: 2px solid var(--accent); font-size: 0.9rem; color: var(--text-muted); }
+        .news-date { display: block; font-size: 0.75rem; color: var(--accent); margin-bottom: 2px; font-weight: 600; }
 
-        /* ==================== 现代时间线 (新闻) ==================== */
-        .timeline { border-left: 2px solid var(--border-color); margin-left: 10px; padding-left: 30px; position: relative; padding-bottom: 10px; padding-top: 10px;}
-        .timeline-item { position: relative; margin-bottom: 30px; }
-        .timeline-item:last-child { margin-bottom: 0; }
-        .timeline-item::before {
-            content: ''; position: absolute;
-            left: -37px; top: 6px; width: 12px; height: 12px;
-            background-color: var(--card-bg); border: 2px solid var(--accent-color);
-            border-radius: 50%; transition: 0.3s;
+        /* 5. 论文内嵌网格 (Pubs) */
+        /* ==================== 论文网格卡片布局 (4列) ==================== */
+        .pub-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 核心：定义为等宽的4列 */
+            gap: 20px;
+            margin-top: 20px;
         }
-        .timeline-item:hover::before { background-color: var(--accent-color); box-shadow: 0 0 10px var(--accent-color); }
-        .timeline-date { font-weight: 700; color: var(--accent-color); font-size: 0.9em; margin-bottom: 8px; display: inline-block; background: var(--accent-light); padding: 3px 12px; border-radius: 20px;}
-        .timeline-content { color: var(--text-main); font-size: 1em; line-height: 1.6;}
 
-        /* ==================== 论文列表优化 ==================== */
         .pub-item {
-            display: flex; gap: 30px; padding: 25px 0;
-            border-bottom: 1px dashed var(--border-color);
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column; /* 内部垂直排列 */
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            box-sizing: border-box;
         }
-        .pub-item:last-child { border-bottom: none; padding-bottom: 0; }
-        .pub-thumb { flex: 0 0 180px; }
-        .pub-thumb img { 
-            width: 100%; border-radius: 8px; border: 1px solid var(--border-color); 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+
+        .pub-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
         }
-        .pub-item:hover .pub-thumb img { transform: translateY(-4px) scale(1.02); box-shadow: var(--shadow-hover); }
-        .pub-info { flex: 1; }
-        .pub-title { font-weight: 700; font-size: 1.15em; color: var(--text-heading); margin-bottom: 8px; display: block; line-height: 1.4;}
-        .pub-authors { font-size: 0.95em; margin-bottom: 8px; color: var(--text-main); }
-        .pub-venue { font-style: italic; color: var(--text-heading); font-size: 0.9em; font-weight: 600; opacity: 0.8;}
+
+        .pub-venue-badge {
+            display: inline-block;
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            align-self: flex-start; /* 标签靠左对齐 */
+        }
+
+        .pub-title {
+            font-size: 1.05em;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .pub-authors {
+            font-size: 0.85em;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            line-height: 1.6;
+            flex-grow: 1; /* 核心：让作者区域自动撑开，把底部的链接挤到最下方 */
+        }
+
+        .pub-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: auto; /* 核心：保证所有卡片的底部按钮对齐 */
+        }
         
-        /* 胶囊按钮设计 (PDF/Code) */
-        .pub-links { margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;}
         .pub-links a {
-            display: inline-flex; align-items: center; gap: 6px;
-            font-size: 0.85em; padding: 4px 14px; 
+            display: inline-flex; align-items: center; gap: 5px;
+            font-size: 0.85em; padding: 4px 12px;
             border: 1px solid var(--border-color); background-color: var(--bg-main);
-            border-radius: 20px; color: var(--text-main); font-weight: 600;
+            border-radius: 15px; color: var(--text-main); font-weight: 600;
             transition: all 0.2s;
         }
-        .pub-links a:hover { 
-            background-color: var(--accent-color); border-color: var(--accent-color); 
-            color: #fff; text-decoration: none; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(2, 132, 199, 0.2);
+        .pub-links a:hover {
+            background-color: var(--accent-color); border-color: var(--accent-color); color: #fff;
         }
 
-        /* 移动端完美适配 */
-        @media (max-width: 850px) {
-            body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; position: relative; padding: 40px 20px; box-shadow: none; border-bottom: 1px solid var(--border-color);}
-            .main-content { margin-left: 0; padding: 40px 6%; }
-            .sidebar nav ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
-            .sidebar nav ul li { margin: 0; }
-            .sidebar nav ul li a { padding: 6px 12px; font-size: 0.95em; background: rgba(255,255,255,0.05);}
-            .pub-item { flex-direction: column; gap: 20px;}
-            .pub-thumb { flex: 0 0 auto; max-width: 100%; }
-            .pub-thumb img { max-width: 250px; }
-            .timeline { margin-left: 5px; padding-left: 20px;}
-            .timeline-item::before { left: -27px; }
+        /* 响应式调整：屏幕变小的时候自动缩小列数，防止卡片被挤压变形 */
+        @media (max-width: 1300px) {
+            .pub-grid { grid-template-columns: repeat(3, 1fr); } /* 中等屏幕 3 列 */
+        }
+        @media (max-width: 1000px) {
+            .pub-grid { grid-template-columns: repeat(2, 1fr); } /* 较小屏幕 2 列 */
+        }
+        @media (max-width: 650px) {
+            .pub-grid { grid-template-columns: 1fr; } /* 手机端 1 列 */
+        }
+        .pub-venue-badge { align-self: flex-start; padding: 4px 10px; background: var(--text-main); color: var(--bg-color); border-radius: 8px; font-weight: 700; font-size: 0.8rem; }
+        .pub-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: var(--text-main); line-height: 1.3;}
+        .pub-authors { font-size: 0.85rem; color: var(--text-muted); }
+        .pub-links { display: flex; gap: 15px; font-size: 0.85rem; font-weight: 600; margin-top: auto; padding-top: 10px;}
+
+        /* 控制栏 */
+        .top-controls { display: flex; justify-content: flex-end; width: 100%; max-width: 1200px; margin-bottom: 20px; gap: 10px; }
+        .ctrl-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--card-border); background: var(--card-bg); color: var(--text-main); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .ctrl-btn:hover { background: var(--text-main); color: var(--bg-color); }
+
+        /* ================== 移动端适配 ================== */
+        @media (max-width: 950px) {
+            .bento-container { display: flex; flex-direction: column; }
+            .pub-grid { grid-template-columns: 1fr; }
+            .scroll-area { max-height: 300px; }
         }
 
-        /* 语言切换核心逻辑 */
+        /* 语言控制 */
         .lang-en { display: none; }
         body.en-mode .lang-zh { display: none; }
         body.en-mode .lang-en { display: block; }
-        body.en-mode span.lang-en, body.en-mode a.lang-en, body.en-mode strong.lang-en { display: inline; }
+        body.en-mode span.lang-en { display: inline; }
     </style>
 </head>
-<body class="en-mode">
 
-    <aside class="sidebar">
-        <img src="images/gown.jpg" alt="Dr. Chen Feng" class="profile-img" onerror="this.src='https://via.placeholder.com/150'">
+<body class="en-mode dark-mode">
+
+    <!-- 顶部控制栏 -->
+    <div class="top-controls">
+        <button class="ctrl-btn" onclick="toggleLanguage()" title="Switch Language"><i class="fas fa-language"></i></button>
+        <button class="ctrl-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle Theme"><i class="fas fa-sun"></i></button>
+    </div>
+
+    <!-- Bento Box 容器 -->
+    <div class="bento-container" id="bento-grid">
         
-        <h1><span class="lang-en">Chen FENG</span><span class="lang-zh">冯 晨</span></h1>
-        <p class="title">
-            <span class="lang-en">Lecturer in Machine Learning<br>Queen's University Belfast</span>
-            <span class="lang-zh">助理教授 / 博士生导师<br>贝尔法斯特女王大学</span>
-        </p>
-
-        <div class="social-icons">
-            <a href="mailto:c.feng@qub.ac.uk" title="Email"><i class="fas fa-envelope"></i></a>
-            <a href="https://scholar.google.com/citations?hl=en&user=4VZhTYgAAAAJ" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-            <a href="https://github.com/MrChenFeng" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://x.com/Dr_ChenFeng" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.linkedin.com/in/drchenfeng/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.zhihu.com/people/MrChenFeng" title="Zhihu"><i class="fab fa-zhihu"></i></a>
-            <a href="https://www.xiaohongshu.com/user/profile/5d783b07000000000100882e" title="Xiaohongshu">
-                <svg viewBox="0 0 377.97 376.53"><path d="M43.86,1.11C21.81,5.7,3.59,22.91,1.34,46.07c-2.33,23.92,0,49.25,0,73.3v149.53c0,27.5-6.94,64.79,10.75,87.96,19.11,25.02,53.98,19.06,81.6,19.06h214.03c8.48,0,18.08,1.24,26.39-.49,22.05-4.59,40.26-21.8,42.51-44.96,2.33-23.92,0-49.25,0-73.3V107.64c0-27.5,6.94-64.79-10.75-87.96C346.76-5.34,311.89.62,284.27.62H70.24c-8.48,0-18.08-1.24-26.39.49M177.26,134.02l-10.26,27.85h17.59l-14.66,35.18,13.19,1.47c-1.45,3.93-3.4,11.34-6.35,14.42-2.17,2.26-5.48,1.71-8.31,1.71-6.39,0-19.3,2.65-22.72-4.4-1.57-3.23.68-7.31,1.95-10.26,2.66-6.17,6.19-12.48,7.57-19.06-3.19,0-7.22.63-10.26-.49-11.4-4.19,1.28-22.52,3.91-28.83,1.85-4.43,4.04-14.05,8.06-16.86,5.65-3.94,14.24-1.21,20.28-.73M61.45,226.38c4.03,0,10.02,1.2,12.46-2.93,2.59-4.39.73-14.06.73-19.06v-48.38c0-4.53-2.29-18.38,1.71-21.26,3.29-2.37,17.1-1.87,18.57,2.2,2.4,6.66.24,17.83.24,24.92v46.91c0,8.04,1.39,17.39-1.95,24.92-3.19,7.18-18.04,13.59-25.41,8.06-3.24-2.43-5.55-11.6-6.35-15.39M284.27,134.02v7.33c5.47,0,12.33-1.12,17.59.49,17.56,5.36,16.13,22.61,16.13,37.63,2.93,0,5.93-.23,8.8.49,16.85,4.21,14.66,21.06,14.66,34.69,0,7.27,1.36,15.86-3.42,21.99-5.27,6.75-13.9,5.86-21.5,5.86-2.36,0-6.25.75-8.31-.73-3.85-2.77-5.54-11-6.35-15.39,4.82,0,13.51,1.65,17.35-1.95,4.52-4.25,2.67-20.86-2.69-23.7-2.84-1.5-7.16-.73-10.26-.73h-21.99v42.51h-20.52v-42.51h-20.52v-20.52h20.52v-17.59h-13.19v-20.52h13.19v-7.33h20.52M237.36,141.35v20.52h-11.73v61.57h19.06v19.06h-67.43l7.82-18.32,18.57-.73v-61.57h-11.73v-20.52h45.44M320.92,161.88c0-4.17-.76-9.17.49-13.19,4.9-15.82,28.76-3.07,16.86,10.02-1.35,1.49-3.73,2.22-5.62,2.69-3.75.94-7.89.49-11.73.49M61.45,161.88l-6.11,54.24-10.02,17.59-8.8-23.46,4.4-48.38h20.52M128.88,161.88l4.4,48.38-8.8,21.99h-2.93c-7.87-12.46-8.87-25.31-10.26-39.58-.99-10.14-2.93-20.58-2.93-30.78h20.52M284.27,161.88v17.59h13.19v-17.59h-13.19M174.32,223.45l-7.33,19.06h-32.25l7.82-19.79,11.24.24,20.52.49Z"/></svg>
-            </a>
+        <!-- [Row 1] 个人档案 (2x2) -->
+        <div class="bento-card span-col-2 span-row-2">
+            <div class="profile-header">
+                <img src="images/gown.jpg" alt="Prof. Chen Feng" class="profile-img" onerror="this.src='https://via.placeholder.com/150'">
+                <div class="name-title">
+                    <h1><span class="lang-en">Prof. Chen Feng</span><span class="lang-zh">冯 晨 教授</span></h1>
+                    <p>
+                        <span class="lang-en">Lecturer (Asst. Prof.) @ QUB</span>
+                        <span class="lang-zh">讲师 (助理教授) @ QUB</span>
+                    </p>
+                </div>
+            </div>
+            <div style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7;">
+                <span class="lang-en">
+                    I am a Lecturer in Machine Learning at <strong><a href="https://www.qub.ac.uk/" target="_blank" class="text-link">Queen's University Belfast</a></strong>. My research centers on building robust, reliable, and secure AI systems. 
+                    Prior to joining QUB, I was a Postdoctoral Research Associate in the <a href="https://www.ee.ucl.ac.uk/iiml/" target="_blank" class="text-link">IIML Group</a> at <strong><a href="https://www.ucl.ac.uk/" target="_blank" class="text-link">UCL</a></strong>. I received my Ph.D. from <strong><a href="https://www.qmul.ac.uk/" target="_blank" class="text-link">QMUL</a></strong> (supervised by <a href="http://www.eecs.qmul.ac.uk/~ioannisp/" target="_blank" class="text-link">Prof. Ioannis Patras</a>), 
+                    Master's from <strong><a href="https://www.au.tsinghua.edu.cn/en/" target="_blank" class="text-link">Tsinghua University</a></strong> (supervised by <a href="http://lifeome.net/glab/jgu/index.htm" target="_blank" class="text-link">Prof. Jin Gu</a>), and Bachelor's from <strong>Nankai University</strong>.
+                </span>
+                <span class="lang-zh">
+                    我是<strong><a href="https://www.qub.ac.uk/" target="_blank" class="text-link">贝尔法斯特女王大学（QUB）</a></strong>机器学习方向的讲师（助理教授）。研究致力于构建鲁棒、可靠且安全的人工智能系统。
+                    此前，我在 <strong><a href="https://www.ucl.ac.uk/" target="_blank" class="text-link">伦敦大学学院（UCL）</a></strong> 担任博士后研究员。我于 <strong><a href="https://www.qmul.ac.uk/" target="_blank" class="text-link">伦敦玛丽女王大学（QMUL）</a></strong> 获得博士学位（导师 <a href="http://www.eecs.qmul.ac.uk/~ioannisp/" target="_blank" class="text-link">Ioannis Patras 教授</a>），
+                    于<strong><a href="https://www.au.tsinghua.edu.cn/" target="_blank" class="text-link">清华大学</a></strong>获得硕士学位（导师<a href="http://lifeome.net/glab/jgu/index.htm" target="_blank" class="text-link">古槿教授</a>），本科毕业于<strong>南开大学</strong>。
+                </span>
+            </div>
+            <div class="tags-container">
+                <span class="tag">Machine Learning</span>
+                <span class="tag">AI Safety & Alignment</span>
+                <span class="tag">Learning with Noisy Labels</span>
+                <span class="tag">Self-supervised Learning</span>
+            </div>
         </div>
 
-        <nav>
-            <ul>
-                <li><a href="#about"><span class="lang-en">About Me</span><span class="lang-zh">关于我</span></a></li>
-                <li><a href="#vacancies"><span class="lang-en">Vacancies</span><span class="lang-zh">招生招聘</span></a></li>
-                <li><a href="#news"><span class="lang-en">News</span><span class="lang-zh">最新动态</span></a></li>
-                <li><a href="#research"><span class="lang-en">Research</span><span class="lang-zh">发表论文</span></a></li>
-                <li><a href="#services"><span class="lang-en">Services</span><span class="lang-zh">学术服务</span></a></li>
-            </ul>
-        </nav>
-
-        <div class="controls">
-            <button class="control-btn" id="lang-btn" onclick="toggleLanguage()"><i class="fas fa-language"></i> 中 / EN</button>
-            <button class="control-btn" id="theme-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+        <!-- [Row 1] 坐标卡片 (1x1) -->
+        <div class="bento-card span-col-1 span-row-1 center-card">
+            <i class="fas fa-location-dot location-icon" style="color: var(--accent);"></i>
+            <h3 style="margin: 0 0 5px 0; font-size: 1.1rem;"><span class="lang-en">Belfast, UK</span><span class="lang-zh">英国 · 贝尔法斯特</span></h3>
+            <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);"><a href="https://www.qub.ac.uk/" target="_blank" style="color: inherit; text-decoration: none;">Queen's University Belfast</a></p>
         </div>
-    </aside>
 
-    <main class="main-content">
-        
-<section id="about">
-            <h2 class="section-title"><i class="fas fa-user-circle"></i> <span class="lang-en">About Me</span><span class="lang-zh">关于我</span></h2>
+        <!-- [Row 1] 招聘卡片 (1x1) -->
+        <div class="bento-card span-col-1 span-row-1 center-card hiring-card">
+            <div class="live-ping"></div>
+            <h3 style="margin: 0 0 5px 0; color: var(--text-main); font-size: 1.1rem;"><span class="lang-en">Vacancies</span><span class="lang-zh">招生招聘</span></h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.4;">
+                <span class="lang-en">Hiring self-motivated PhDs & Visitors.<br>Send CV & Statement.</span>
+                <span class="lang-zh">招收博士及访问学者。<br>请附简历与研究陈述。</span>
+            </p>
+            <a href="mailto:c.feng@qub.ac.uk" style="color: var(--danger); font-size: 0.85rem; font-weight: 600;">c.feng@qub.ac.uk &rarr;</a>
+        </div>
+
+        <!-- [Row 2] 社交媒体矩阵 (2x1) -->
+        <div class="bento-card span-col-2 span-row-1" style="justify-content: center;">
+            <div class="social-grid">
+                <a href="mailto:c.feng@qub.ac.uk" class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://scholar.google.com/citations?hl=en&user=4VZhTYgAAAAJ" class="social-link" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                <a href="https://github.com/MrChenFeng" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://x.com/Dr_ChenFeng" class="social-link" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.linkedin.com/in/drchenfeng/" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.zhihu.com/people/MrChenFeng" class="social-link" title="Zhihu"><i class="fab fa-zhihu"></i></a>
+                <a href="https://www.xiaohongshu.com/user/profile/5d783b07000000000100882e" class="social-link" title="Xiaohongshu">
+                    <svg viewBox="0 0 377.97 376.53"><path d="M43.86,1.11C21.81,5.7,3.59,22.91,1.34,46.07c-2.33,23.92,0,49.25,0,73.3v149.53c0,27.5-6.94,64.79,10.75,87.96,19.11,25.02,53.98,19.06,81.6,19.06h214.03c8.48,0,18.08,1.24,26.39-.49,22.05-4.59,40.26-21.8,42.51-44.96,2.33-23.92,0-49.25,0-73.3V107.64c0-27.5,6.94-64.79-10.75-87.96C346.76-5.34,311.89.62,284.27.62H70.24c-8.48,0-18.08-1.24-26.39.49M177.26,134.02l-10.26,27.85h17.59l-14.66,35.18,13.19,1.47c-1.45,3.93-3.4,11.34-6.35,14.42-2.17,2.26-5.48,1.71-8.31,1.71-6.39,0-19.3,2.65-22.72-4.4-1.57-3.23.68-7.31,1.95-10.26,2.66-6.17,6.19-12.48,7.57-19.06-3.19,0-7.22.63-10.26-.49-11.4-4.19,1.28-22.52,3.91-28.83,1.85-4.43,4.04-14.05,8.06-16.86,5.65-3.94,14.24-1.21,20.28-.73M61.45,226.38c4.03,0,10.02,1.2,12.46-2.93,2.59-4.39.73-14.06.73-19.06v-48.38c0-4.53-2.29-18.38,1.71-21.26,3.29-2.37,17.1-1.87,18.57,2.2,2.4,6.66.24,17.83.24,24.92v46.91c0,8.04,1.39,17.39-1.95,24.92-3.19,7.18-18.04,13.59-25.41,8.06-3.24-2.43-5.55-11.6-6.35-15.39M284.27,134.02v7.33c5.47,0,12.33-1.12,17.59.49,17.56,5.36,16.13,22.61,16.13,37.63,2.93,0,5.93-.23,8.8.49,16.85,4.21,14.66,21.06,14.66,34.69,0,7.27,1.36,15.86-3.42,21.99-5.27,6.75-13.9,5.86-21.5,5.86-2.36,0-6.25.75-8.31-.73-3.85-2.77-5.54-11-6.35-15.39,4.82,0,13.51,1.65,17.35-1.95,4.52-4.25,2.67-20.86-2.69-23.7-2.84-1.5-7.16-.73-10.26-.73h-21.99v42.51h-20.52v-42.51h-20.52v-20.52h20.52v-17.59h-13.19v-20.52h13.19v-7.33h20.52M237.36,141.35v20.52h-11.73v61.57h19.06v19.06h-67.43l7.82-18.32,18.57-.73v-61.57h-11.73v-20.52h45.44M320.92,161.88c0-4.17-.76-9.17.49-13.19,4.9-15.82,28.76-3.07,16.86,10.02-1.35,1.49-3.73,2.22-5.62,2.69-3.75.94-7.89.49-11.73.49M61.45,161.88l-6.11,54.24-10.02,17.59-8.8-23.46,4.4-48.38h20.52M128.88,161.88l4.4,48.38-8.8,21.99h-2.93c-7.87-12.46-8.87-25.31-10.26-39.58-.99-10.14-2.93-20.58-2.93-30.78h20.52M284.27,161.88v17.59h13.19v-17.59h-13.19M174.32,223.45l-7.33,19.06h-32.25l7.82-19.79,11.24.24,20.52.49Z"/></svg>
+                </a>
+            </div>
+        </div>
+
+                <!-- [Row 3 & 4] 全量动态日志 (2x2) -->
+        <div class="bento-card span-col-2 span-row-2">
+            <h3 class="card-title"><i class="fas fa-satellite-dish" style="color: var(--accent);"></i> <span class="lang-en">News</span><span class="lang-zh">动态</span></h3>
+            <div class="scroll-area">
+                <div class="news-item">
+                    <span class="news-date">MAY 2026</span>
+                    <span class="lang-en">Visiting Koç University and the <a href="https://ai.ku.edu.tr/" target="_blank" class="text-link">KUIS AI Center</a> this June, invited by Prof. Cigdem Gunduz Demir.</span>
+                    <span class="lang-zh">受 Cigdem Gunduz Demir 教授邀请，将于今年 6 月访问科奇大学 <a href="https://ai.ku.edu.tr/" target="_blank" class="text-link">KUIS AI Center</a>。</span>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">MAR 2026</span>
+                    <span class="lang-en">Serving as Guest Editor for MDPI Electronics <a href="https://www.mdpi.com/journal/electronics/special_issues/NUH9HG1S4C" target="_blank" class="text-link">Special Issue</a>.</span>
+                    <span class="lang-zh">担任 MDPI Electronics <a href="https://www.mdpi.com/journal/electronics/special_issues/NUH9HG1S4C" target="_blank" class="text-link">特刊</a>客座主编。</span>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">FEB 2026</span>
+                    <span class="lang-en">Awarded the <a href="https://www.mdpi.com/journal/jcp/awards/3512" target="_blank" class="text-link">JCP Travel Award</a>.</span>
+                    <span class="lang-zh">荣获 <a href="https://www.mdpi.com/journal/jcp/awards/3512" target="_blank" class="text-link">JCP Travel Award</a>。</span>
+                </div>
+                <div class="news-item"><span class="news-date">FEB 2026</span><span class="lang-en">🎉 One paper accepted to <b>CVPR 2026</b>.</span><span class="lang-zh">🎉 一篇论文被 <b>CVPR 2026</b> 接收。</span></div>
+                <div class="news-item"><span class="news-date">JAN 2026</span><span class="lang-en">🎉 One paper accepted to <b>ICLR 2026</b>.</span><span class="lang-zh">🎉 一篇论文被 <b>ICLR 2026</b> 接收。</span></div>
+                <div class="news-item">
+                    <span class="news-date">NOV 2025</span>
+                    <span class="lang-en">Selected as an <a href="https://www.daad.de/en/the-daad/postdocnet/fellows/fellows/" target="_blank" class="text-link">AInet Fellow</a> by DAAD.</span>
+                    <span class="lang-zh">入选 DAAD <a href="https://www.daad.de/en/the-daad/postdocnet/fellows/fellows/" target="_blank" class="text-link">AInet Fellow</a>。</span>
+                </div>
+                <div class="news-item"><span class="news-date">SEP 2025</span><span class="lang-en">Joined Queen's University Belfast as a Lecturer.</span><span class="lang-zh">正式加入 QUB 担任讲师。</span></div>
+                <div class="news-item">
+                    <span class="news-date">JUL 2025</span>
+                    <span class="lang-en">BMVA Symposium on AI Security was a resounding success. <a href="https://www.youtube.com/watch?v=FuFUERNFR9w&list=PLW8VWHVjepIszQtfq1N0UPfwVYwSxAgYL" target="_blank" class="text-link">Watch Video</a>.</span>
+                    <span class="lang-zh">BMVA 人工智能安全研讨会圆满结束。 <a href="https://www.youtube.com/watch?v=FuFUERNFR9w&list=PLW8VWHVjepIszQtfq1N0UPfwVYwSxAgYL" target="_blank" class="text-link">视频回放</a>。</span>
+                </div>
+                <div class="news-item"><span class="news-date">JUL 2025</span><span class="lang-en">Two papers accepted to <b>ACM MM 2025</b>.</span><span class="lang-zh">两篇论文被 <b>ACM MM 2025</b> 接收。</span></div>
+                <div class="news-item">
+                    <span class="news-date">APR 2025</span>
+                    <span class="lang-en">Interviewed by <a href="https://aihub.org/2025/04/15/provably-safe-certification-for-machine-learning-models-under-adversarial-attacks-interview-with-chen-feng/" target="_blank" class="text-link">AIhub</a> regarding recent research.</span>
+                    <span class="lang-zh">接受 <a href="https://aihub.org/2025/04/15/provably-safe-certification-for-machine-learning-models-under-adversarial-attacks-interview-with-chen-feng/" target="_blank" class="text-link">AIhub</a> 专访。</span>
+                </div>
+                <div class="news-item"><span class="news-date">FEB 2025</span><span class="lang-en">Attended AAAI'25 in Philadelphia for an oral presentation.</span><span class="lang-zh">赴费城参加 AAAI'25 并作口头报告。</span></div>
+                <div class="news-item">
+                    <span class="news-date">DEC 2024</span>
+                    <span class="lang-en">Announced as Chair for <a href="https://www.bmva.org/meetings/25-07-16-AISecurity.html" target="_blank" class="text-link">BMVA Symposium on AI Security</a>.</span>
+                    <span class="lang-zh">宣布担任 <a href="https://www.bmva.org/meetings/25-07-16-AISecurity.html" target="_blank" class="text-link">BMVA AI 安全研讨会</a>主席。</span>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">DEC 2024</span>
+                    <span class="lang-en"><a href="https://arxiv.org/abs/2402.02629" target="_blank" class="text-link">PROSAC</a> accepted for <b>oral presentation</b> at AAAI'25!</span>
+                    <span class="lang-zh"><a href="https://arxiv.org/abs/2402.02629" target="_blank" class="text-link">PROSAC</a> 被 AAAI'25 接收为 Oral！</span>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">JUL 2024</span>
+                    <span class="lang-en"><a href="https://dl.acm.org/doi/10.1145/3664647.3680664" target="_blank" class="text-link">CLIPCleaner</a> accepted to ACM MM'24!</span>
+                    <span class="lang-zh"><a href="https://dl.acm.org/doi/10.1145/3664647.3680664" target="_blank" class="text-link">CLIPCleaner</a> 被 ACM MM'24 接收！</span>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">JUL 2024</span>
+                    <span class="lang-en"><a href="https://ieeexplore.ieee.org/document/10594806" target="_blank" class="text-link">NoiseBox</a> accepted to IEEE TCSVT!</span>
+                    <span class="lang-zh"><a href="https://ieeexplore.ieee.org/document/10594806" target="_blank" class="text-link">NoiseBox</a> 被 IEEE TCSVT 接收！</span>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">MAY 2024</span>
+                    <span class="lang-en">Defended PhD. Thanks to examiners: <a href="https://scholar.google.co.uk/citations?user=XR6C9BoAAAAJ&hl=en" target="_blank" class="text-link">Dr. Qianni Zhang</a> & <a href="https://scholar.google.co.uk/citations?user=MeS5d4gAAAAJ&hl=en" target="_blank" class="text-link">Prof. Tao Xiang</a>.</span>
+                    <span class="lang-zh">通过博士答辩。感谢答辩委员 <a href="https://scholar.google.co.uk/citations?user=XR6C9BoAAAAJ&hl=en" target="_blank" class="text-link">Dr. Qianni Zhang</a> 和 <a href="https://scholar.google.co.uk/citations?user=MeS5d4gAAAAJ&hl=en" target="_blank" class="text-link">Prof. Tao Xiang</a>。</span>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">FEB 2024</span>
+                    <span class="lang-en"><a href="https://github.com/szlbiubiubiu/LAFS_CVPR2024" target="_blank" class="text-link">LAFS</a> accepted to CVPR'24!</span>
+                    <span class="lang-zh"><a href="https://github.com/szlbiubiubiu/LAFS_CVPR2024" target="_blank" class="text-link">LAFS</a> 被 CVPR'24 接收！</span>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">JAN 2024</span>
+                    <span class="lang-en">Invited open seminar talk at <a href="https://www.riken.jp/en/research/labs/aip/generic_tech/imperfect_inf_learn/" target="_blank" class="text-link">RIKEN AIP</a>.</span>
+                    <span class="lang-zh">受邀在 <a href="https://www.riken.jp/en/research/labs/aip/generic_tech/imperfect_inf_learn/" target="_blank" class="text-link">RIKEN AIP</a> 进行学术报告。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- [Row 3 & 4] 学术服务与交流记录 (2x2) -->
+        <div class="bento-card span-col-2 span-row-2">
+            <h3 class="card-title"><i class="fas fa-network-wired" style="color: var(--accent);"></i> <span class="lang-en">Academic Services & Fellowships</span><span class="lang-zh">学术服务与交流</span></h3>
+            <div class="scroll-area">
+                <div>
+                    <strong class="lang-en" style="color: var(--text-main);">Program Committee / Reviewer:</strong>
+                    <strong class="lang-zh" style="color: var(--text-main);">程序委员会 / 审稿人：</strong><br>
+                    <span style="color: var(--text-muted); font-size: 0.9rem;">ICML, CVPR, NeurIPS, AAAI, ICLR, ICCV, ECCV, AISTATS, BMVC, ACCV, ICPR, COLM, ICPR, IJCAI</span>
+                </div>
+                <div>
+                    <strong class="lang-en" style="color: var(--text-main);">Journal Reviewer:</strong>
+                    <strong class="lang-zh" style="color: var(--text-main);">期刊审稿人：</strong><br>
+                    <span style="color: var(--text-muted); font-size: 0.9rem;">IEEE TPAMI, IJCV, IEEE TNNLS, IEEE TCSVT, Image and Vision Computing, Pattern Recognition, KBS</span>
+                </div>
+                <div>
+                    <strong class="lang-en" style="color: var(--text-main);">Chair & Organizer:</strong>
+                    <strong class="lang-zh" style="color: var(--text-main);">会议主席与组织：</strong><br>
+                    <span style="color: var(--text-muted); font-size: 0.9rem;"><a href="https://www.bmva.org/meetings/25-07-16-AISecurity.html" target="_blank" class="text-link">BMVA Symposium on AI Security</a>, ICIRA 2024 Special Session</span>
+                </div>
+                <div>
+                    <strong class="lang-en" style="color: var(--text-main);">Fellowships & Memberships:</strong>
+                    <strong class="lang-zh" style="color: var(--text-main);">奖学金与学会会员：</strong><br>
+                    <span style="color: var(--text-muted); font-size: 0.9rem;">
+                        <span class="lang-en"><a href="https://www.ai4media.eu/junior-fellows-program/" target="_blank" class="text-link">AI4Media Junior Exchange Fellow</a> (Univ. of Trento, working with <a href="https://disi.unitn.it/~sebe/" target="_blank" class="text-link">Prof. Nicu Sebe</a>)</span>
+                        <span class="lang-zh"><a href="https://www.ai4media.eu/junior-fellows-program/" target="_blank" class="text-link">AI4Media 青年交流学者</a> (特伦托大学，合作导师 <a href="https://disi.unitn.it/~sebe/" target="_blank" class="text-link">Nicu Sebe 教授</a>)</span><br>
+                        <span class="lang-en"><a href="https://www.daad.de/en/the-daad/postdocnet/fellows/fellows/" target="_blank" class="text-link">DAAD AInet Fellow</a></span>
+                        <span class="lang-zh"><a href="https://www.daad.de/en/the-daad/postdocnet/fellows/fellows/" target="_blank" class="text-link">DAAD AInet Fellow</a></span><br>
+                        Member of ACM, IEEE, The Computer Vision Foundation (CVF), BMVA
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- [Row 5+] 完整代表作网格 (4xAuto) -->
+        <div class="bento-card span-col-4">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                <h3 class="card-title" style="margin: 0;"><i class="fas fa-book-open" style="color: var(--accent);"></i> <span class="lang-en">Selected Publications</span><span class="lang-zh">代表性学术成果</span></h3>
+                <a href="https://scholar.google.com/citations?hl=en&user=4VZhTYgAAAAJ" target="_blank" style="font-size: 0.85rem; font-weight: 600;">
+                    <span class="lang-en">Full List &rarr;</span><span class="lang-zh">完整列表 &rarr;</span>
+                </a>
+            </div>
             
-            <div class="lang-en">
-                <p>I am a Lecturer (Assistant Professor) in Machine Learning at <a href="https://www.qub.ac.uk/" target="_blank" style="font-weight: 600;">Queen's University Belfast</a>. My research centers on building robust, reliable, and secure AI systems, with a particular focus on two core pillars:</p>
-                
-                <div style="background-color: var(--bg-main); border-left: 3px solid var(--accent-color); padding: 15px 25px; border-radius: 0 8px 8px 0; margin: 20px 0; box-shadow: inset 2px 0 0 0 rgba(2, 132, 199, 0.1);">
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 10px;">
-                            <i class="fas fa-brain" style="color: var(--accent-color); margin-right: 8px; width: 16px; text-align: center;"></i>
-                            <strong>Machine Learning under Imperfect Information:</strong> Self-supervised learning, semi-supervised learning, and learning with noisy or coarse labels.
-                        </li>
-                        <li>
-                            <i class="fas fa-shield-alt" style="color: var(--accent-color); margin-right: 8px; width: 16px; text-align: center;"></i>
-                            <strong>AI Safety & Alignment:</strong> Assessing and enhancing the security and reliability of imperfect models, particularly Large Language Models (LLMs).
-                        </li>
-                    </ul>
-                </div>
-
-                <p>Prior to joining QUB, I was a Postdoctoral Research Associate in the <a href="https://www.ee.ucl.ac.uk/iiml/" target="_blank">Information, Inference and Machine Learning (IIML)</a> Group at <a href="https://www.ucl.ac.uk/" target="_blank" style="font-weight: 500;">University College London</a>. I received my Ph.D. from <a href="https://www.qmul.ac.uk/" target="_blank">Queen Mary University of London</a> under the supervision of <a href="http://www.eecs.qmul.ac.uk/~ioannisp/" target="_blank">Prof. Ioannis Patras</a>, and spent time as an <a href="https://www.ai4media.eu/junior-fellows-program/" target="_blank">AI4Media Junior Exchange Fellow</a> at the University of Trento, working with <a href="https://disi.unitn.it/~sebe/" target="_blank">Prof. Nicu Sebe</a>.</p>
-                
-                <p>I hold a Master’s degree from <a href="https://www.au.tsinghua.edu.cn/en/" target="_blank">Tsinghua University</a> (supervised by <a href="http://lifeome.net/glab/jgu/index.htm" target="_blank">Prof. Jin Gu</a>) and a Bachelor’s degree from Nankai University.</p>
-
-                <p style="margin-top: 25px; font-weight: 500; color: var(--text-heading);">
-                    <i class="far fa-handshake" style="color: var(--accent-color); margin-right: 5px;"></i> I am always open to discussing research ideas and potential collaborations. Please feel free to drop me an email!
-                </p>
-            </div>
-
-            <div class="lang-zh">
-                <p>我是<a href="https://www.qub.ac.uk/" target="_blank" style="font-weight: 600;">贝尔法斯特女王大学（QUB）</a>机器学习方向的讲师（助理教授）。我的研究致力于构建鲁棒、可靠且安全的人工智能系统，主要聚焦于以下两个核心领域：</p>
-                
-                <div style="background-color: var(--bg-main); border-left: 3px solid var(--accent-color); padding: 15px 25px; border-radius: 0 8px 8px 0; margin: 20px 0; box-shadow: inset 2px 0 0 0 rgba(2, 132, 199, 0.1);">
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 10px;">
-                            <i class="fas fa-brain" style="color: var(--accent-color); margin-right: 8px; width: 16px; text-align: center;"></i>
-                            <strong>不完美信息下的机器学习：</strong> 涵盖自监督学习、半监督学习以及噪声/粗糙标签学习。
-                        </li>
-                        <li>
-                            <i class="fas fa-shield-alt" style="color: var(--accent-color); margin-right: 8px; width: 16px; text-align: center;"></i>
-                            <strong>人工智能安全 (AI Safety)：</strong> 致力于评估和提升不完美模型（如大语言模型 LLMs）的安全性与可靠性。
-                        </li>
-                    </ul>
-                </div>
-
-                <p>在加入 QUB 之前，我在<a href="https://www.ucl.ac.uk/" target="_blank" style="font-weight: 500;">伦敦大学学院（UCL）</a>的“信息、推断与机器学习”课题组担任博士后研究员。我于<a href="https://www.qmul.ac.uk/" target="_blank">伦敦玛丽女王大学（QMUL）</a>获得博士学位，师从 <a href="http://www.eecs.qmul.ac.uk/~ioannisp/" target="_blank">Ioannis Patras 教授</a>；期间曾作为 <a href="https://www.ai4media.eu/junior-fellows-program/" target="_blank">AI4Media 青年交流学者</a>赴特伦托大学与 <a href="https://disi.unitn.it/~sebe/" target="_blank">Nicu Sebe 教授</a>开展合作研究。</p>
-                
-                <p>在此之前，我本科毕业于南开大学，随后在<a href="https://www.au.tsinghua.edu.cn/" target="_blank">清华大学</a>获得硕士学位（师从<a href="http://lifeome.net/glab/jgu/index.htm" target="_blank">古槿教授</a>进行生物信息学研究）。</p>
-
-                <p style="margin-top: 25px; font-weight: 500; color: var(--text-heading);">
-                    <i class="far fa-handshake" style="color: var(--accent-color); margin-right: 5px;"></i> 我非常欢迎对以上研究方向感兴趣的同学或同行与我联系，探讨前沿学术问题与潜在的合作机会。
-                </p>
-            </div>
-        </section>
-
-        <section id="vacancies">
-            <h2 class="section-title">
-                <i class="fas fa-bullhorn"></i> 
-                <span class="lang-en">Vacancies</span><span class="lang-zh">招生招聘</span>
-                <span class="live-dot" title="Actively Hiring" style="margin-left: auto;"></span>
-            </h2>
-            <div class="highlight-box">
-                <p class="lang-en" style="margin-top: 0;">I am actively looking for self-motivated <strong>PhD students</strong> and <strong>Visiting Scholars</strong> to join my research group. Our research focuses on <strong>Machine Learning under Imperfect Information</strong> (e.g., Noisy Labels, Semi-supervised Learning) and <strong>AI Safety</strong>.</p>
-                <p class="lang-zh" style="margin-top: 0;">我目前正在积极寻找自我驱动力强的<strong>博士研究生</strong>以及<strong>访问学者</strong>加入我的课题组。我们的研究主要聚焦于<strong>不完美信息下的机器学习</strong>（例如噪声标签学习、半监督学习）以及<strong>人工智能安全（AI Safety）</strong>。</p>
-                
-                <div style="margin-top: 25px; display: inline-block; background-color: var(--accent-light); padding: 15px 25px; border-radius: 8px; border-left: 4px solid var(--accent-color);">
-                    <span class="lang-en" style="font-weight: 500;">Please send your CV, transcripts, and a brief research statement to:</span>
-                    <span class="lang-zh" style="font-weight: 500;">请将您的个人简历、成绩单以及简短的研究陈述发送至：</span>
-                    <br>
-                    <a href="mailto:c.feng@qub.ac.uk" style="font-size: 1.1em; font-weight: 700; display: inline-block; margin-top: 8px;"><i class="fas fa-envelope"></i> c.feng@qub.ac.uk</a>
-                </div>
-                
-                <p style="font-size: 0.85em; color: var(--text-main); margin-top: 20px; font-style: italic; opacity: 0.7;">
-                    <span class="lang-en">* Please use the subject line "Prospective Student - [Your Name]" to ensure your email is prioritized.</span>
-                    <span class="lang-zh">* 请使用邮件主题 "Prospective Student - [您的姓名]"，以确保您的邮件得到优先处理。</span>
-                </p>
-            </div>
-        </section>
-
-        <section id="news">
-            <h2 class="section-title"><i class="fas fa-bolt"></i> <span class="lang-en">Recent News</span><span class="lang-zh">最新动态</span></h2>
-            <div class="list-container">
-                <div class="scrollable-list">
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-date">Mar 27, 2026</div>
-                            <div class="timeline-content">
-                                <span class="lang-en">I am happy to serve as the leading Guest Editor for the MDPI <i>Electronics</i> Special Issue on <a href="https://www.mdpi.com/journal/electronics/special_issues/NUH9HG1S4C" target="_blank">"Computer Vision and Machine Learning: Real-World Applications"</a>. Submissions are welcome!</span>
-                                <span class="lang-zh">非常荣幸受邀担任 MDPI <i>Electronics</i> 期刊特刊 <a href="https://www.mdpi.com/journal/electronics/special_issues/NUH9HG1S4C" target="_blank">"Computer Vision and Machine Learning: Real-World Applications"</a> 的客座编辑。欢迎大家踊跃投稿！</span>
-                            </div>
-                        </div>
-                      <div class="timeline-item">
-                            <div class="timeline-date">Feb 27, 2026</div>
-                            <div class="timeline-content">
-                                <span class="lang-en">I have been awarded the <a href="https://www.mdpi.com/journal/jcp/awards/3512" target="_blank">JCP Travel Award</a>!</span>
-                                <span class="lang-zh">非常荣幸获得了 <a href="https://www.mdpi.com/journal/jcp/awards/3512" target="_blank">JCP Travel Award</a>（旅行奖）！</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Feb 20, 2026</div>
-                            <div class="timeline-content">
-                                <span class="lang-en">One paper has been accepted to <b>CVPR'26</b>!</span>
-                                <span class="lang-zh">有一篇论文被计算机视觉顶会 <b>CVPR 2026</b> 接收！</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Jan 25, 2026</div>
-                            <div class="timeline-content">
-                                <span class="lang-en">One paper has been accepted to <b>ICLR'26</b>!</span>
-                                <span class="lang-zh">有一篇论文被深度学习顶会 <b>ICLR 2026</b> 接收！</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Nov 5, 2025</div>
-                            <div class="timeline-content">
-                                <span class="lang-en">I'm thrilled to have been selected as an <a href="https://www.daad.de/en/the-daad/postdocnet/fellows/fellows/">AInet Fellow</a> by DAAD! Thanks to this fellowship, I will be heading to Germany for a visit next year.</span>
-                                <span class="lang-zh">非常荣幸入选 DAAD <a href="https://www.daad.de/en/the-daad/postdocnet/fellows/fellows/">AInet Fellow</a> 计划！得益于此奖学金，我将于明年赴德国进行学术访问。</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Sep 1, 2025</div>
-                            <div class="timeline-content">
-                                <span class="lang-en">I am excited to announce that I have officially joined <b>Queen's University Belfast (QUB)</b> as a Lecturer (Assistant Professor) in Machine Learning!</span>
-                                <span class="lang-zh">我非常高兴地宣布，我已正式加入 <b>贝尔法斯特女王大学 (QUB)</b>，担任机器学习方向的讲师（助理教授）！</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Jul 16, 2025</div>
-                            <div class="timeline-content">
-                                <span class="lang-en">The BMVA Symposium on AI Security was a resounding success! A heartfelt thank you to all attendees and speakers for their invaluable contributions. Watch the full video here: <a href="https://www.youtube.com/watch?v=FuFUERNFR9w&list=PLW8VWHVjepIszQtfq1N0UPfwVYwSxAgYL">Link</a>.</span>
-                                <span class="lang-zh">BMVA 人工智能安全研讨会圆满结束！衷心感谢所有参会者和演讲嘉宾的宝贵贡献。点击<a href="https://www.youtube.com/watch?v=FuFUERNFR9w&list=PLW8VWHVjepIszQtfq1N0UPfwVYwSxAgYL">此处</a>观看完整视频回放。</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Jul 5, 2025</div>
-                            <div class="timeline-content">
-                                <span class="lang-en">Two papers have been accepted to <b>ACM MM'25</b>!</span>
-                                <span class="lang-zh">有两篇论文被多媒体顶会 <b>ACM MM 2025</b> 接收！</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Apr 15, 2025</div>
-                            <div class="timeline-content">
-                                <span class="lang-en">I was recently interviewed by <a href="https://aihub.org/">AIhub</a> about my recent research. Grateful for the opportunity to share my work and perspectives. <a href="https://aihub.org/2025/04/15/provably-safe-certification-for-machine-learning-models-under-adversarial-attacks-interview-with-chen-feng/">Read the full interview here.</a></span>
-                                <span class="lang-zh">最近接受了 <a href="https://aihub.org/">AIhub</a> 关于我近期研究的专访。非常感谢能有这个机会分享我的工作与观点。<a href="https://aihub.org/2025/04/15/provably-safe-certification-for-machine-learning-models-under-adversarial-attacks-interview-with-chen-feng/">点击此处阅读完整采访</a>。</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Feb 28, 2025</div>
-                            <div class="timeline-content">
-                                <span class="lang-en">Excited to attend AAAI'25 in Philadelphia and deliver an oral presentation of our paper!</span>
-                                <span class="lang-zh">很高兴能前往费城参加 AAAI 2025，并对我们的论文进行口头报告 (Oral Presentation)！</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Dec 12, 2024</div>
-                            <div class="timeline-content">
-                                <span class="lang-en">I will be chairing the <a href="https://www.bmva.org/meetings/25-07-16-AISecurity.html">BMVA Symposium on AI Security</a> in July 2025. Stay tuned for further updates!</span>
-                                <span class="lang-zh">我将于2025年7月担任 <a href="https://www.bmva.org/meetings/25-07-16-AISecurity.html">BMVA 人工智能安全研讨会</a> 的主席。敬请期待后续更新！</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Dec 10, 2024</div>
-                            <div class="timeline-content">
-                                <span class="lang-en"><a href="https://arxiv.org/abs/2402.02629">PROSAC</a> has been accepted for <b>oral presentation</b> at AAAI'25!</span>
-                                <span class="lang-zh">论文 <a href="https://arxiv.org/abs/2402.02629">PROSAC</a> 被 AI 顶会 <b>AAAI 2025</b> 接收为 <b>Oral (口头报告)</b>！</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Jul 15, 2024</div>
-                            <div class="timeline-content">
-                                <span class="lang-en"><a href="https://dl.acm.org/doi/10.1145/3664647.3680664">CLIPCleaner</a> has been accepted to ACM MM'24!</span>
-                                <span class="lang-zh">论文 <a href="https://dl.acm.org/doi/10.1145/3664647.3680664">CLIPCleaner</a> 被 ACM MM 2024 接收！</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Jul 11, 2024</div>
-                            <div class="timeline-content">
-                                <span class="lang-en"><a href="https://ieeexplore.ieee.org/document/10594806">NoiseBox</a> has been accepted to IEEE Transactions on Circuits and Systems for Video Technology!</span>
-                                <span class="lang-zh">论文 <a href="https://ieeexplore.ieee.org/document/10594806">NoiseBox</a> 被 IEEE TCSVT 接收！</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">May 10, 2024</div>
-                            <div class="timeline-content">
-                                <span class="lang-en">Successfully defended my PhD on May 10! Sincere thanks to my examiners: <a href="https://scholar.google.co.uk/citations?user=XR6C9BoAAAAJ&hl=en">Dr. Qianni Zhang</a> and <a href="https://scholar.google.co.uk/citations?user=MeS5d4gAAAAJ&hl=en">Prof. Tao Xiang</a>.</span>
-                                <span class="lang-zh">于5月10日顺利通过博士答辩！衷心感谢我的答辩委员：<a href="https://scholar.google.co.uk/citations?user=XR6C9BoAAAAJ&hl=en">Dr. Qianni Zhang</a> 和 <a href="https://scholar.google.co.uk/citations?user=MeS5d4gAAAAJ&hl=en">Prof. Tao Xiang</a>。</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Feb 28, 2024</div>
-                            <div class="timeline-content">
-                                <span class="lang-en"><a href="https://github.com/szlbiubiubiu/LAFS_CVPR2024">LAFS</a> has been accepted to CVPR'24!</span>
-                                <span class="lang-zh">论文 <a href="https://github.com/szlbiubiubiu/LAFS_CVPR2024">LAFS</a> 被计算机视觉顶会 <b>CVPR 2024</b> 接收！</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Jan 20, 2024</div>
-                            <div class="timeline-content">
-                                <span class="lang-en">I was invited to give an open seminar talk at <a href="https://www.riken.jp/en/research/labs/aip/generic_tech/imperfect_inf_learn/">RIKEN AIP</a>.</span>
-                                <span class="lang-zh">受邀在 <a href="https://www.riken.jp/en/research/labs/aip/generic_tech/imperfect_inf_learn/">RIKEN AIP</a> 进行公开学术报告 (Seminar Talk)。</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="research">
-            <h2 class="section-title"><i class="fas fa-layer-group"></i> <span class="lang-en">Selected Publications</span><span class="lang-zh">代表性论文</span></h2>
-            <div class="list-container" style="padding: 10px 30px;">
+           <div class="pub-grid">
                 
                 <div class="pub-item">
-                    <div class="pub-thumb"><img src="images/prosac.png" alt="PROSAC" onerror="this.src='https://via.placeholder.com/400x200?text=AAAI+2025'"></div>
-                    <div class="pub-info">
-                        <a href="https://arxiv.org/abs/2402.02629" class="pub-title">PROSAC: Provably Safe Certification for Machine Learning Models under Adversarial Attacks</a>
-                        <div class="pub-authors"><b>Chen Feng</b>, Ziquan Liu, Zhuo Zhi, Ilija Bogunovic, Carsten Gerner-Beuerle, Miguel Rodrigues</div>
-                        <div class="pub-venue">AAAI 2025 (Oral Presentation)</div>
-                        <div class="pub-links">
-                            <a href="https://arxiv.org/abs/2402.02629"><i class="far fa-file-pdf"></i> Paper</a>
-                        </div>
+                    <div class="pub-venue-badge" style="background: #6b7280;">CVPR 2026</div>
+                    <div class="pub-title">Deconstructing the Failure of Ideal Noise Correction: A Three-Pillar Diagnosis</div>
+                    <div class="pub-authors"><b>Chen Feng</b>, Zhuo Zhi, Zhao Huang, Jiawei Ge, Ling Xiao, Nicu Sebe, Georgios Tzimiropoulos, Ioannis Patras</div>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2603.12997" target="_blank"><i class="fas fa-file-pdf"></i> arXiv</a>
+                    </div>
+                </div>
+                
+                <div class="pub-item">
+                    <div class="pub-venue-badge" style="background: #10b981;">ICLR 2026</div>
+                    <div class="pub-title">Noisy but Valid: Robust Statistical Evaluation of LLMs with Imperfect Judges</div>
+                    <div class="pub-authors"><b>Chen Feng</b>, Minghe Shen, Ananth Balashankar, Carsten Gerner-Beuerle, Miguel R. D. Rodrigues</div>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2601.20913" target="_blank"><i class="fas fa-file-pdf"></i> arXiv</a>
                     </div>
                 </div>
 
                 <div class="pub-item">
-                    <div class="pub-thumb"><img src="images/clipcleaner.png" alt="CLIPCleaner" onerror="this.src='https://via.placeholder.com/400x200?text=ACM+MM+2024'"></div>
-                    <div class="pub-info">
-                        <a href="https://www.arxiv.org/abs/2408.10012" class="pub-title">CLIPCleaner: Cleaning Noisy Labels with CLIP</a>
-                        <div class="pub-authors"><b>Chen Feng</b>, Georgios Tzimiropoulos, Ioannis Patras</div>
-                        <div class="pub-venue">ACM MM 2024</div>
-                        <div class="pub-links">
-                            <a href="https://www.arxiv.org/abs/2408.10012"><i class="far fa-file-pdf"></i> Paper</a>
-                            <a href="https://github.com/MrChenFeng/CLIPCleaner_ACMMM2024"><i class="fab fa-github"></i> Code</a>
-                        </div>
+                    <div class="pub-venue-badge" style="background: #3b82f6;">ACM MM 2025</div>
+                    <div class="pub-title">Unveiling open-set noise: theoretical insights into label noise</div>
+                    <div class="pub-authors"><b>Chen Feng</b>, Nicu Sebe, Georgios Tzimiropoulos, Miguel R. D. Rodrigues, Ioannis Patras</div>
+                    <div class="pub-links">
+                        <a href="#" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
                     </div>
                 </div>
 
                 <div class="pub-item">
-                    <div class="pub-thumb"><img src="images/noisebox.png" alt="NoiseBox" onerror="this.src='https://via.placeholder.com/400x200?text=IEEE+TCSVT'"></div>
-                    <div class="pub-info">
-                        <a href="https://ieeexplore.ieee.org/document/10594806" class="pub-title">NoiseBox: Towards More Efficient and Effective Learning with Noisy Labels</a>
-                        <div class="pub-authors"><b>Chen Feng</b>, Georgios Tzimiropoulos, Ioannis Patras</div>
-                        <div class="pub-venue">IEEE TCSVT 2024</div>
-                        <div class="pub-links">
-                            <a href="https://ieeexplore.ieee.org/document/10594806"><i class="far fa-file-pdf"></i> Paper</a>
-                        </div>
+                    <div class="pub-venue-badge" style="background: #f59e0b;">AAAI 2025 (Oral)</div>
+                    <div class="pub-title">PROSAC: Provably Safe Certification for Machine Learning Models under Adversarial Attacks</div>
+                    <div class="pub-authors"><b>Chen Feng</b>, Ziquan Liu, Zhuo Zhi, Ilija Bogunovic, Carsten Gerner-Beuerle, Miguel Rodrigues</div>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2402.02629" target="_blank"><i class="fas fa-file-pdf"></i> arXiv</a>
                     </div>
                 </div>
 
                 <div class="pub-item">
-                    <div class="pub-thumb"><img src="images/lafs.png" alt="LAFS" onerror="this.src='https://via.placeholder.com/400x200?text=CVPR+2024'"></div>
-                    <div class="pub-info">
-                        <a href="https://arxiv.org/abs/2403.08161" class="pub-title">LAFS: Landmark-based Facial Self-supervised Learning for Face Recognition</a>
-                        <div class="pub-authors">Zhonglin Sun, <b>Chen Feng</b>, Ioannis Patras, Georgios Tzimiropoulos</div>
-                        <div class="pub-venue">CVPR 2024</div>
-                        <div class="pub-links">
-                            <a href="https://arxiv.org/abs/2403.08161"><i class="far fa-file-pdf"></i> Paper</a>
-                            <a href="https://github.com/szlbiubiubiu/LAFS_CVPR2024"><i class="fab fa-github"></i> Code</a>
-                        </div>
+                    <div class="pub-venue-badge" style="background: #3b82f6;">ACM MM 2024</div>
+                    <div class="pub-title">CLIPCleaner: Cleaning Noisy Labels with CLIP</div>
+                    <div class="pub-authors"><b>Chen Feng</b>, Georgios Tzimiropoulos, Ioannis Patras</div>
+                    <div class="pub-links">
+                        <a href="https://www.arxiv.org/abs/2408.10012" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+                        <a href="https://github.com/MrChenFeng/CLIPCleaner_ACMMM2024" target="_blank"><i class="fas fa-code"></i> Code</a>
                     </div>
                 </div>
-                
-                <div style="text-align: right; padding: 20px 0;">
-                    <a href="https://scholar.google.com/citations?hl=en&user=4VZhTYgAAAAJ" target="_blank" style="font-weight: 600; display: inline-flex; align-items: center; gap: 5px;">
-                        <span class="lang-en">View Full Publication List on Google Scholar</span>
-                        <span class="lang-zh">前往 Google Scholar 查看完整论文</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
+
+                <div class="pub-item">
+                    <div class="pub-venue-badge" style="background: #8b5cf6;">IEEE TCSVT 2024</div>
+                    <div class="pub-title">NoiseBox: Towards More Efficient and Effective Learning with Noisy Labels</div>
+                    <div class="pub-authors"><b>Chen Feng</b>, Georgios Tzimiropoulos, Ioannis Patras</div>
+                    <div class="pub-links">
+                        <a href="https://ieeexplore.ieee.org/document/10594806" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+                    </div>
                 </div>
 
-            </div>
-        </section>
+                <div class="pub-item">
+                    <div class="pub-venue-badge" style="background: #6b7280;">CVPR 2024</div>
+                    <div class="pub-title">LAFS: Landmark-based Facial Self-supervised Learning for Face Recognition</div>
+                    <div class="pub-authors">Zhonglin Sun, <b>Chen Feng</b>, Ioannis Patras, Georgios Tzimiropoulos</div>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2403.08161" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+                        <a href="https://github.com/szlbiubiubiu/LAFS_CVPR2024" target="_blank"><i class="fas fa-code"></i> Code</a>
+                    </div>
+                </div>
 
-        <section id="services">
-            <h2 class="section-title"><i class="fas fa-network-wired"></i> <span class="lang-en">Academic Services</span><span class="lang-zh">学术服务</span></h2>
-            <div class="list-container" style="line-height: 1.8;">
-                <p>
-                    <strong class="lang-en">Programme Committee / Reviewer:</strong>
-                    <strong class="lang-zh">程序委员会委员 / 审稿人：</strong><br>
-                    ICML, CVPR, NeurIPS, AAAI, ICLR, ICCV, ECCV, AISTATS, BMVC, ACCV, ICPR, COLM
-                </p>
-                <p>
-                    <strong class="lang-en">Journal Reviewer:</strong>
-                    <strong class="lang-zh">期刊审稿人：</strong><br>
-                    IEEE TPAMI, IJCV, IEEE TNNLS, IEEE TCSVT, Image and Vision Computing
-                </p>
-                <p>
-                    <strong class="lang-en">Chair & Organizer:</strong>
-                    <strong class="lang-zh">研讨会主席与组织者：</strong><br>
-                    BMVA Symposium on AI Security, ICIRA 2024 Special Session
-                </p>
-                <p>
-                    <strong class="lang-en">Memberships:</strong>
-                    <strong class="lang-zh">学术组织成员：</strong><br>
-                    ACM, IEEE, The Computer Vision Foundation (CVF), BMVA
-                </p>
+                <div class="pub-item">
+                    <div class="pub-venue-badge" style="background: #6b7280;">CVPR 2023</div>
+                    <div class="pub-title">MaskCon: Masked Contrastive Learning for Coarse-Labelled Dataset</div>
+                    <div class="pub-authors"><b>Chen Feng</b>, Ioannis Patras</div>
+                    <div class="pub-links">
+                        <a href="https://openaccess.thecvf.com/content/CVPR2023/html/Feng_MaskCon_Masked_Contrastive_Learning_for_Coarse-Labelled_Dataset_CVPR_2023_paper.html" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>
+                        <a href="https://github.com/MrChenFeng/MaskCon_CVPR2023" target="_blank"><i class="fas fa-code"></i> Code</a>
+                        <a href="https://www.youtube.com/watch?v=V4is0vAYNOw" target="_blank"><i class="fas fa-video"></i> Video</a>
+                    </div>
+                </div>
             </div>
-        </section>
-        
-        <footer style="text-align: center; color: var(--text-main); opacity: 0.6; font-size: 0.85em; padding-bottom: 20px;">
-            &copy; 2026 Chen Feng. All rights reserved.
-        </footer>
+        </div>
 
-    </main>
+    </div>
 
     <script>
-        // 语言切换逻辑
+        // Spotlight Effect (光标探照灯)
+        document.getElementById("bento-grid").onmousemove = e => {
+            for(const card of document.getElementsByClassName("bento-card")) {
+                const rect = card.getBoundingClientRect(),
+                      x = e.clientX - rect.left,
+                      y = e.clientY - rect.top;
+                card.style.setProperty("--mouse-x", `${x}px`);
+                card.style.setProperty("--mouse-y", `${y}px`);
+            }
+        };
+
+        // 语言切换
         function toggleLanguage() {
-            const body = document.body;
-            body.classList.toggle('en-mode');
+            document.body.classList.toggle('en-mode');
         }
 
-        // 暗黑模式逻辑
+        // 主题切换
         function loadTheme() {
             const savedTheme = localStorage.getItem('theme');
             const icon = document.querySelector('#theme-btn i');
-            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            if (savedTheme === 'light') {
+                document.body.classList.remove('dark-mode');
+                document.body.classList.add('light-mode');
+                icon.classList.replace('fa-sun', 'fa-moon');
+            } else {
                 document.body.classList.add('dark-mode');
-                icon.classList.replace('fa-moon', 'fa-sun');
             }
         }
 
         function toggleTheme() {
             const body = document.body;
             const icon = document.querySelector('#theme-btn i');
-            body.classList.toggle('dark-mode');
             
             if (body.classList.contains('dark-mode')) {
-                icon.classList.replace('fa-moon', 'fa-sun');
-                localStorage.setItem('theme', 'dark');
-            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
                 icon.classList.replace('fa-sun', 'fa-moon');
                 localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                icon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
             }
         }
         
